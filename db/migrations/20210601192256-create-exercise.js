@@ -10,7 +10,8 @@ module.exports = {
       },
       muscleGroup: {
         allowNull: false,
-        type: Sequelize.Datatype.ENUM('Arms', 'Legs', 'Core', 'Back', 'Cardio')
+        type: Sequelize.DataTypes.ENUM,
+        values: ['Arms', 'Legs', 'Core', 'Chest', 'Back', 'Cardio']
       },
       muscleName: {
         allowNull: false,
@@ -24,7 +25,7 @@ module.exports = {
       },
       exerciseType: {
         allowNull: false,
-        type: Sequelize.Datatype.ENUM('Power-lift', 'Machine', 'Cardio', 'Calisthenics')
+        type: Sequelize.DataTypes.ENUM('Power-lift', 'Machine', 'Cardio', 'Calisthenics')
       },
       imageLocation: {
         allowNull: true,
