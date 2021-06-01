@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       author: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(75)
       },
       quote: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       createdAt: {
@@ -28,3 +30,5 @@ module.exports = {
     return queryInterface.dropTable('Quotes');
   }
 };
+
+
