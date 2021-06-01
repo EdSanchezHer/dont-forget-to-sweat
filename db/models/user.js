@@ -6,8 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     hashedPassword: DataTypes.STRING,
     bodyWeight: DataTypes.INTEGER,
     bodyFatPercentage: DataTypes.DECIMAL,
-    fitnessLevel: DataTypes.INTEGER
-  }, {});
+    fitnessLevel: {
+      type: DataTypes.ENUM,
+      values: ["weight-loss", "strength-training", "general-fitness", "conditioning", "muscle-tone"],
+      defaultValue: "general-fitness"
+      }
+    }, 
+  {});
   User.associate = function(models) {
     // associations can be defined here
   };

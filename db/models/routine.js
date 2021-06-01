@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     title: DataTypes.STRING,
     completionTime: DataTypes.INTEGER,
-    tags: DataTypes.ENUM,
+    tags: {
+      type: DataTypes.ENUM,
+      values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday", "Custom", "Temp"],
+      defaultValue: "Temp"
+    },
     expiration: DataTypes.INTEGER
   }, {});
   Routine.associate = function(models) {
