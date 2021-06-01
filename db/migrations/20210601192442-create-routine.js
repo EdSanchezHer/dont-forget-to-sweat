@@ -11,7 +11,7 @@ module.exports = {
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        refrences: {model: Users}
+        refrences: {model: 'Users'}
       },
       title: {
         allowNull: false,
@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.TIME
       },
       tags: {
-        type: Sequelize.DATATYPES.ENUM("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday", "Custom", "Temp"),
+        type: Sequelize.DataTypes.ENUM("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday", "Custom", "Temp"),
         default: "Temp"
       },
       expiration: {

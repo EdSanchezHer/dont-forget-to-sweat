@@ -31,7 +31,7 @@ module.exports = {
       exerciseId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: Exercises }
+        references: { model: 'Exercises' }
       },
       createdAt: {
         allowNull: false,

@@ -31,7 +31,7 @@ module.exports = {
       },
       fitnessLevel: {
         allowNull: true,
-        type: Sequelize.DATATYPES.ENUM("weight-loss", "strength-training", "general-fitness", "conditioning", "muscle-tone")
+        type: Sequelize.DataTypes.ENUM("weight-loss", "strength-training", "general-fitness", "conditioning", "muscle-tone")
       },
       createdAt: {
         allowNull: false,
