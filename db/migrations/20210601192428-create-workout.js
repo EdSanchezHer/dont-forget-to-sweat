@@ -9,22 +9,29 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       weight: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       resistance: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       repetitions: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       sets: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       distance: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       exerciseId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: Exercises }
       },
       createdAt: {
         allowNull: false,
