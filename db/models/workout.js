@@ -24,16 +24,18 @@ module.exports = (sequelize, DataTypes) => {
     exerciseId: {
       type: DataTypes.INTEGER,
       allowNull: false
-    },
+    }
+  },
+  {})
   Workout.associate = function(models) {
-    const joinsTable = {
-      
-
-
+    const columnMapping = {
+      through: "WorkoutRoutine",
+      other: "routineId",
+      foreignKey: "workoutId"
     }
 
-    Workout.belongsTo( models.Exercise, { foreignKey: "exerciseId" } )
-    Workout.belongsTo( models.Routine, )
+    Workout.belongsTo( models.Exercise, { foreignKey: "exerciseId" } ),
+    Workout.belongsToMany( models.Routine, columnMapping )
   };
   return Workout;
 };
