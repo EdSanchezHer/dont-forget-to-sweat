@@ -9,18 +9,25 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        refrences: {model: Users}
       },
       title: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50),
+        unique: true
       },
       completionTime: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.TIME
       },
       tags: {
-        type: Sequelize.ENUM
+        type: Sequelize.DATATYPES.ENUM("Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday", "Sunday", "Custom", "Temp"),
+        default: "Temp"
       },
       expiration: {
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       createdAt: {

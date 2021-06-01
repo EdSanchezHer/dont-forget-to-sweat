@@ -9,10 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       workoutId: {
-        type: Sequelize.INTEGER
+        allowNull: false, 
+        type: Sequelize.INTEGER,
+        references: {model: Workouts}
       },
       routineId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: Routines}
       },
       createdAt: {
         allowNull: false,

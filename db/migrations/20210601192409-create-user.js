@@ -9,22 +9,29 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       fullName: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(75)
       },
       email: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(75),
+        unique: true
       },
       hashedPassword: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING.BINARY
       },
       bodyWeight: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       bodyFatPercentage: {
+        allowNull: false,
         type: Sequelize.DECIMAL
       },
       fitnessLevel: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.DATATYPES.ENUM("weight-loss", "strength-training", "general-fitness", "conditioning", "muscle-tone")
       },
       createdAt: {
         allowNull: false,
