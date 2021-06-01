@@ -9,25 +9,35 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       muscleGroup: {
-        type: Sequelize.ENUM
+        allowNull: false,
+        type: Sequelize.Datatype.ENUM('Arms', 'Legs', 'Core', 'Back', 'Cardio')
       },
       muscleName: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(75),
+        unique: true
       },
       exerciseTitle: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(100),
+        unique: true
       },
       exerciseType: {
-        type: Sequelize.ENUM
+        allowNull: false,
+        type: Sequelize.Datatype.ENUM('Power-lift', 'Machine', 'Cardio', 'Calisthenics')
       },
       imageLocation: {
-        type: Sequelize.STRING
+        allowNull: true,
+        type: Sequelize.STRING(255)
       },
       tips: {
-        type: Sequelize.STRING
+        allowNull: true,
+        type: Sequelize.TEXT,
       },
       spotter: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        default: false,
       },
       createdAt: {
         allowNull: false,
