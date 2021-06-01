@@ -1,10 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Exercise = sequelize.define('Exercise', {
-    muscleGroup: DataTypes.ENUM,
+    muscleGroup: {
+      type: DataTypes.ENUM,
+      values: ['Arms', 'Legs', 'Core', 'Chest', 'Back', 'Cardio']
+    },
     muscleName: DataTypes.STRING,
     exerciseTitle: DataTypes.STRING,
-    exerciseType: DataTypes.ENUM,
+    exerciseType: {
+      type: DataTypes.ENUM,
+      values: ['Power-lift', 'Machine', 'Cardio', 'Calisthenics']
+    },
     imageLocation: DataTypes.STRING,
     tips: DataTypes.STRING,
     spotter: DataTypes.BOOLEAN
