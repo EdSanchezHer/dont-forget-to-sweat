@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Quote = sequelize.define('Quote', {
-    author: DataTypes.STRING,
-    quote: DataTypes.TEXT
+    author: { type: DataTypes.STRING(75), allowNull: false},
+    quote: { type: DataTypes.TEXT, allowNull: false}
   }, {});
   Quote.associate = function(models) {
     // associations can be defined here
