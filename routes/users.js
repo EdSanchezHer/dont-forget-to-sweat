@@ -73,7 +73,7 @@ const userValidator = [
   //   res.send('respond with a resource');
   // });
   
-  router.get("/signup", csrfProtection, (req, res, next) => {
+  router.get("/signup", csrfProtection, asyncHandler(async (req, res) => {
   const user = await db.User.build({
     fullName: null,
     email: null,
@@ -88,7 +88,7 @@ const userValidator = [
     user,
     csrfToken: req.csrfToken()
   })
-})
+}));
 
 router.post(
   "/signup",
@@ -160,7 +160,6 @@ router.get("/login", csrfProtection, (req, res, next)=> {
       })
     })
   )
-
 
   
 module.exports = router;

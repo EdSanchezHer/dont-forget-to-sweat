@@ -3,17 +3,18 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/index.css")
+  link(rel="stylesheet" href="/stylesheets/navbar.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  nav 
+  nav.navbar__container 
     a(href="/") 
       img(src="/images/logo.png" width="200", alt="logo")
     div
       a(href="") Login 
-      a(href="") Demo 
       a(href="") Sign Up
+      a(href="") Login as a Demo User
   div.main  
     h1#header The workout routine app for busy people.
     a(href="users/signup") Sign Up 
@@ -21,6 +22,27 @@ block content
     p Get your routine, online.
     p You'll never forget to sweat again. 
   footer
-
-  
-  
+    div.row-links
+      div.col-picture
+        img(src="")
+      div.col-company
+        p.footer-header Company
+        a(href="/about-us") About Us 
+      div.col-product
+        p.footer-header Product
+        a(href="https://github.com/EdSanchezHer/dont-forget-to-sweat/wiki") Don't Forget to Sweat Wiki
+      div.col-community
+        p.footer-header Community  
+        a(href="https://www.appacademy.io/") App Academy 
+      div.col-support
+        p.footer-header Support 
+        a(href="https://github.com/EdSanchezHer/dont-forget-to-sweat/issues") Report Issue
+    div.row-legal
+      p © 2020 Don't Forget to Sweat
+      ul
+        li 
+          a(href="/github") Terms
+        li 
+          a(href="/github") Privacy
+        li 
+          a(href="/github") Security
