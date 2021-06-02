@@ -1,3 +1,7 @@
+@import "form.css";
+@import "navbar.css";
+@import "reset.css";
+
 h1 {
-    color: #555555;
+	color: #555555;
 }
