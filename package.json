@@ -23,6 +23,8 @@
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
+    "bcryptjs": "^2.4.3",
+    "csurf": "^1.11.0",
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
     "nodemon": "^2.0.6"
