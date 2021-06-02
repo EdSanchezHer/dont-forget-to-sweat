@@ -65,4 +65,3 @@
 # 5) hybrid
     * write function to check experation date of routines and/or workouts and "delete" expired ones from database upon login
     * new quote functionality
-    * 
