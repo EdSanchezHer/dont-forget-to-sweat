@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       author: {
+        allowNull: true,
         type: Sequelize.STRING(75)
       },
       quote: {

@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     fullName: { type: DataTypes.STRING(75), allowNull: false},
     email: { type: DataTypes.STRING(75), allowNull: false, unique: true},
     hashedPassword: { type: DataTypes.STRING.BINARY, allowNull: false},
-    bodyWeight: { type: DataTypes.INTEGER, allowNull: false},
-    bodyFatPercentage: { type: DataTypes.DECIMAL, allowNull: false},
+    bodyWeight: { type: DataTypes.INTEGER, allowNull: true},
+    bodyFatPercentage: { type: DataTypes.DECIMAL, allowNull: true},
     fitnessLevel: {
       type: DataTypes.ENUM,
       values: ["weight-loss", "strength-training", "general-fitness", "conditioning", "muscle-tone"],
