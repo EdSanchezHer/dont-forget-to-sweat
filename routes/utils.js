@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
-// const csrf = require('csurf')
+const csrf = require('csurf');
 
-// const csrfProtection = csrf({cookie : true})
+const csrfProtection = csrf({cookie : true})
 
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch((e) => next(e))
 
@@ -24,7 +24,7 @@ async function isPassword(password, hash) {
 // })();
 
 module.exports = {
-    // csrfProtection,
+    csrfProtection,
     asyncHandler, 
     getHash,
     isPassword
