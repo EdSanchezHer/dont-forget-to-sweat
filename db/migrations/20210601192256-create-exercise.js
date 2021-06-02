@@ -16,7 +16,6 @@ module.exports = {
       muscleName: {
         allowNull: false,
         type: Sequelize.STRING(75),
-        unique: true
       },
       exerciseTitle: {
         allowNull: false,
