@@ -6,10 +6,12 @@ const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const indexRouter = require('./routes/index');
+const appRouter = require('./routes/app');
 const usersRouter = require('./routes/users');
-const bcrypt = require('bcryptjs');
 
+
+
+// const bcrypt = require('bcryptj');
 const app = express();
 
 // view engine setup
@@ -33,21 +35,23 @@ app.use(
   })
 );
 
-async function getHash(password, saltRounds) {
-  const hash = await bcrypt.hash(password, saltRounds);
-  console.log(hash);
-}
+// async function getHash(password, saltRounds) {
+//   const hash = await bcrypt.hash(password, saltRounds);
+//   console.log(hash);
+// }
 
 // create Session table if it doesn't already exist
 store.sync();
 
-app.use('/', indexRouter);
+app.use('/', appRouter);
 app.use('/users', usersRouter);
+app.use('/demo', demoRouter);
+app.use('/routines', routinesRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
+// app.use(function (req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function (err, req, res, next) {
