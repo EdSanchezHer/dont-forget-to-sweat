@@ -5,7 +5,11 @@ include utils.pug
 block content 
   div.main-container
     div.left-side-container
-      p visual
+      div.logo
+        a(href="/")
+          img(src="images/logo.png")
+      div.signup-picture
+        img(src="/images/signup-left.png")
     div.right-side-container
       a(href="/signup") Login
       p Sign up for free
