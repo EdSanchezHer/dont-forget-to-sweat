@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 
-const { csrfProtection, asyncHandler} = require("./utils")
+const { csrfProtection, asyncHandler, getHash, isPassword } = require("./utils")
 
 const db = require("../db/models");
 const { render } = require('pug');
 
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const user = require('../db/models/user');
 
@@ -60,7 +60,7 @@ const userValidator = [
     check("email")
     .exists({ checkFalsey: true})
     .withMessage("Please enter your email"),
-    check("password")
+    check("hashedPassword")
     .exists({ checkFalsey: true})
     .withMessage("Please enter your password")
   ];
@@ -74,7 +74,14 @@ const userValidator = [
   // });
   
   router.get("/signup", csrfProtection, (req, res, next) => {
-  const user =  db.User.build();
+  const user = await db.User.build({
+    fullName: null,
+    email: null,
+    hashedPassword: null,
+    bodyWeight: null,
+    bodyFatPercentage: null,
+    fitnessLevel: null
+  });
 
   res.render("signup", {
     title: "Sign Up",
@@ -88,21 +95,21 @@ router.post(
   csrfProtection,
   userValidator,
   asyncHandler(async(req, res) => {
-    const {fullName, email, password, bodyWeight, bodyFatPercentage, fitnessLevel} = req.body;
+    const {fullName, email, password} = req.body;
 
-    const user = db.User.build({
+    const user = await db.User.build({
       fullName,
       email,
       password,
-      bodyWeight,
-      bodyFatPercentage,
-      fitnessLevel,
+      bodyWeight: null,
+      bodyFatPercentage: null,
+      fitnessLevel: null,
     })
 
     const validatorError = validationResult(req);
 
     if(validatorError.isEmpty()) {
-      user.hashedPassword = await bcrypt.hash(password, 11);
+      user.hashedPassword = getHash(user.password, 8)
       await user.save();
       loginUser(req, res, user);
       res.redirect("/app")
