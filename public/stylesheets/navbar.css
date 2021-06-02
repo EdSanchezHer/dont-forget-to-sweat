@@ -3,3 +3,12 @@
   justify-content: space-between;
   background-color: yellow;
 }
+
+.navbar__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__button {
+  text-decoration: none;
+}
