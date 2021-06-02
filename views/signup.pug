@@ -1,0 +1,12 @@
+extends layout
+
+block content 
+  div.main-container
+    div.left-side-container
+    div.right-side-container
+      a(href="/signup") Login
+      p Sign up for free
+      form(action="/user/register", method="post") 
+        input(type="hidden" name="_csrf" value=csrfToken)
+        +field("firstName", user.firstName, null, "First Name")
+        +field("lastName", user.lastName, null, "Last Name")
