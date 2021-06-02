@@ -60,7 +60,7 @@ const userValidator = [
     check("email")
     .exists({ checkFalsey: true})
     .withMessage("Please enter your email"),
-    check("hashedPassword")
+    check("password")
     .exists({ checkFalsey: true})
     .withMessage("Please enter your password")
   ];
@@ -118,7 +118,7 @@ router.post(
       res.render("signup", {
         title: "Sign up",
         user,
-        error,
+        errors,
         csrfToken: req.csrfToken(),
       })
     }
@@ -141,9 +141,9 @@ router.get("/login", csrfProtection, (req, res, next)=> {
       const validatorError = validationResult(req)
 
       if(validatorError.isEmpty()) {
-        const user = await db.User.findOne({ where: {email}});
+        const user = await db.User.findOne({ where: { email } });
         if(user !== null) {
-          const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+          const passwordMatch = await isPassword(password, user.hashedPassword.toString());
             if(passwordMatch) {
               loginUser(req, res, user);
               return res.redirect("/app");
