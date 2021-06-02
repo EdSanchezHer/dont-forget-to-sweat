@@ -136,11 +136,24 @@ router.get("/login", csrfProtection, (req, res, next)=> {
       if(validatorError.isEmpty()) {
         const user = await db.User.findOne({ where: {email}});
         if(user !== null) {
-          
+          const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+            if(passwordMatch) {
+              loginUser(req, res, user);
+              return res.redirect("/app");
+            }
         }
+          errors.push("Login failed for the provided email address and password")
+      } else {
+        errors = validatorError.array().map((error) => error.msg);
       }
+      res.render("login", {
+        title: "Login",
+        errors,
+        csrfToken: req.csrfToken(),
+      })
     })
   )
 
 
+  
 module.exports = router;
