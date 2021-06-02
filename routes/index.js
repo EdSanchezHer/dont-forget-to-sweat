@@ -6,6 +6,4 @@ router.get("/", function (req, res, next) {
 	res.render("signup", { title: "a/A Express Skeleton Home" });
 });
 
-//test2
-
 module.exports = router;
