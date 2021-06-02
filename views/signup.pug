@@ -1,12 +1,22 @@
 extends layout
 
+include utils.pug
+
 block content 
   div.main-container
     div.left-side-container
+      div.logo
+        a(href="/")
+          img(src="images/logo.png")
+      div.signup-picture
+        img(src="/images/signup-left.png")
     div.right-side-container
       a(href="/signup") Login
       p Sign up for free
       form(action="/user/register", method="post") 
         input(type="hidden" name="_csrf" value=csrfToken)
-        +field("firstName", user.firstName, null, "First Name")
-        +field("lastName", user.lastName, null, "Last Name")
+        +field("fullName", "user.fullName", null, "Full Name")
+        +field("emailAddress", "user.email", null, "Email")
+        +field("username", "user.username", null, "Username")
+        +field("password", "user.password", null, "Password")
+        button(type='submit') Sign Up!

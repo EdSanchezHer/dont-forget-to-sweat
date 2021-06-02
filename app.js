@@ -10,8 +10,8 @@ const appRouter = require('./routes/app');
 const usersRouter = require('./routes/users');
 
 
-// const bcrypt = require('bcryptj');
 
+// const bcrypt = require('bcryptj');
 const app = express();
 
 // view engine setup
