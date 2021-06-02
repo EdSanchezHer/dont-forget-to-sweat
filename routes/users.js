@@ -73,50 +73,74 @@ const userValidator = [
   //   res.send('respond with a resource');
   // });
   
-//   router.get("/signup", csrfProtection, (req, res, next) => {
-//   const user =  db.User.build();
+  router.get("/signup", csrfProtection, (req, res, next) => {
+  const user =  db.User.build();
 
-//   render.render("signup", {
-//     title: "Sign Up",
-//     user,
-//     csrfToken: req.csrfToken()
-//   })
-// })
+  res.render("signup", {
+    title: "Sign Up",
+    user,
+    csrfToken: req.csrfToken()
+  })
+})
 
-// router.post(
-//   "/signup",
-//   csrfProtection,
-//   userValidator,
-//   asyncHandler(async(req, res) => {
-//     const {fullName, email, password, bodyWeight, bodyFatPercentage, fitnessLevel} = req.body;
+router.post(
+  "/signup",
+  csrfProtection,
+  userValidator,
+  asyncHandler(async(req, res) => {
+    const {fullName, email, password, bodyWeight, bodyFatPercentage, fitnessLevel} = req.body;
 
-//     const user = db.User.build({
-//       fullName,
-//       email,
-//       password,
-//       bodyWeight,
-//       bodyFatPercentage,
-//       fitnessLevel,
-//     })
+    const user = db.User.build({
+      fullName,
+      email,
+      password,
+      bodyWeight,
+      bodyFatPercentage,
+      fitnessLevel,
+    })
 
-//     const validatorError = validationResult(req);
+    const validatorError = validationResult(req);
 
-//     if(validatorError.isEmpty()) {
-//       user.hashedPassword = await bcrypt.hash(password, 11);
-//       await user.save();
-//       loginUser(req, res, user);
-//       res.redirect("/app")
-//     } else {
-//       const errors = validatorError.array().map((error) => error.msg);
-//       res.render("signup", {
-//         title: "Sign up",
-//         user,
-//         error,
-//         csrfToken: req.csrfToken(),
-//       })
-//     }
-//   })
+    if(validatorError.isEmpty()) {
+      user.hashedPassword = await bcrypt.hash(password, 11);
+      await user.save();
+      loginUser(req, res, user);
+      res.redirect("/app")
+    } else {
+      const errors = validatorError.array().map((error) => error.msg);
+      res.render("signup", {
+        title: "Sign up",
+        user,
+        error,
+        csrfToken: req.csrfToken(),
+      })
+    }
+  })
+)
 
-// )
+router.get("/login", csrfProtection, (req, res, next)=> {
+  res.render("login", {
+    title: "Login",
+    csrfToken: req.csrfToken(),
+  })
+})
+  router.post(
+    "/login",
+    csrfProtection,
+    loginValidator,
+    asyncHandler(async(req, res) => {
+      const { email, password } = req.body;
+      const errors = [];
+      const validatorError = validationResult(req)
+
+      if(validatorError.isEmpty()) {
+        const user = await db.User.findOne({ where: {email}});
+        if(user !== null) {
+          
+        }
+      }
+    })
+  )
+
 
 module.exports = router;
