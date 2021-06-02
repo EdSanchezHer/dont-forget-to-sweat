@@ -1,13 +1,17 @@
 
-class NewQuote(){
+class NewQuote () {
     constructor(){
-        this.
+        this.time = new Date(),
+        this.max = Quotes.length
     }
+
+    getRandomQuoteId(Quotes.length) {
+        return Math.floor(Math.random() * quotes);
+    }
+
+
 }
 
-function getRandomQuoteId(quotes) {
-    return Math.floor(Math.random() * quotes);
-}
 
 
 
