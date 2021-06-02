@@ -10,11 +10,28 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+
+/*
+fullName,
+email,
+
+
+
+
 router.get("/signup", csrfProtection, (req, res, next) => {
   const user =  db.User.build();
 
-  render.render("")
+  render.render("signup", {
+    title: "Sign Up",
+    user,
+    csrfToken: req.csrfToken();
+  })
 })
 
+router.post(
+  "/signup",
+  csrfProtection,
+
+)
 
 module.exports = router;
