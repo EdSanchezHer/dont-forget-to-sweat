@@ -22,11 +22,11 @@ module.exports = {
         type: Sequelize.STRING.BINARY
       },
       bodyWeight: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER
       },
       bodyFatPercentage: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DECIMAL
       },
       fitnessLevel: {

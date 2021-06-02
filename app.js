@@ -8,6 +8,7 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const bcrypt = require('bcryptj');
 
 const app = express();
 
@@ -31,6 +32,11 @@ app.use(
     resave: false,
   })
 );
+
+async function getHash(password, saltRounds) {
+  const hash = await bcrypt.hash(password, saltRounds);
+  console.log(hash);
+}
 
 // create Session table if it doesn't already exist
 store.sync();
