@@ -12,11 +12,11 @@ block content
         img(src="/images/signup-left.png")
     div.right-side-container
       div.sign-up-container
-        a(href="/signup") Login
+        a(href="/login") Login
         p Sign up for free
-        form(action="/user/register", method="post") 
+        form(action="/users/signup", method="post") 
           input(type="hidden" name="_csrf" value=csrfToken)
-          +field("fullName", user.fullName, null, "Full Name")
-          +field("emailAddress", user.email, null, "Email")
-          +field("password", user.password, null, "Password")
+          +field("fullName", user.fullName, "Full-Name", "Full Name")
+          +field("emailAddress", user.email,"Email-Address", "Email")
+          +field("password", user.password, "Password", "Password")
           button(type='submit') Sign Up!
