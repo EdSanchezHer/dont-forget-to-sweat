@@ -30,19 +30,16 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     const routineId = parseInt(req.params.id, 10);
 
     const userRoutine = await Routine.findOne({ where: { id: routineId } })
+    if( userRoutine.userId !== currentUserId){
+        throw error //put in validation error
+    }
 
     const allWorkouts = await Workout.findAll({ 
-        attributes: [
-            
-        ]
-
-
-
-
-    })
-
-
-})
+        attributes: ["id", "weight", "resistance", "repititions", "sets", "distance", "exerciseId"],
+        where: { routineId } })
+    
+    res.json({ allWorkouts })    
+}))
 
 
 router.post('/routines')
