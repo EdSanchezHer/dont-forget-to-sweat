@@ -1,5 +1,10 @@
 .main-container {
+	font-family: poppins;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+}
+
+.left-side-container {
+	height: 100%;
 	background-color: var(--main-color);
 }

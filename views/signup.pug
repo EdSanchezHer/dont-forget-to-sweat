@@ -11,11 +11,12 @@ block content
       div.signup-picture
         img(src="/images/signup-left.png")
     div.right-side-container
-      a(href="/signup") Login
-      p Sign up for free
-      form(action="/user/register", method="post") 
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("fullName", user.fullName, null, "Full Name")
-        +field("emailAddress", user.email, null, "Email")
-        +field("password", user.password, null, "Password")
-        button(type='submit') Sign Up!
+      div.sign-up-container
+        a(href="/signup") Login
+        p Sign up for free
+        form(action="/user/register", method="post") 
+          input(type="hidden" name="_csrf" value=csrfToken)
+          +field("fullName", user.fullName, null, "Full Name")
+          +field("emailAddress", user.email, null, "Email")
+          +field("password", user.password, null, "Password")
+          button(type='submit') Sign Up!
