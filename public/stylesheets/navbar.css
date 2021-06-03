@@ -1,7 +1,7 @@
 .navbar__container {
   display: flex;
   justify-content: space-around;
-  background-color: yellow;
+  background-color: var(--main-color);
 }
 
 .navbar__buttons {
