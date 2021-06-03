@@ -1,7 +1,14 @@
 @import "form.css";
 @import "navbar.css";
 @import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap");
+
+:root {
+	--main-color: #de5454;
+	--main-light-color: #fa9b9b;
+}
 
 h1 {
 	color: #555555;
+	background-color: var(--main-color);
 }

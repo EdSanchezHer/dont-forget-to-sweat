@@ -1,5 +1,5 @@
 .main-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-areas: left-side-container right-side-container;
+	background-color: var(--main-color);
 }
