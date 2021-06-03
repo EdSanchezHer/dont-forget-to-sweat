@@ -1,13 +1,21 @@
 .main-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-areas: "left right";
+	grid-template-rows: auto;
+	grid-template-areas:
+		"nav right"
+		"left right";
 }
 
-.left-side-container {
+.left-area {
 	grid-area: left;
 	height: 100vh;
 	background-color: var(--main-color);
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	flex-direction: column;
+	flex-wrap: wrap;
 }
 
 .right-side-container {
@@ -19,9 +27,15 @@
 	flex-wrap: wrap;
 }
 
+.logo-container {
+	background-color: var(--main-color);
+	grid-area: nav;
+	height: 10px;
+}
+
 .form-border {
 	border-radius: 5px;
-	box-shadow: 8px 10px 20px 0px #00000036;
+	box-shadow: 3px 7px 8px 0px #f17c7c52;
 	background-color: #ffe8e8;
 	padding: 20px;
 	width: 420px;
@@ -44,6 +58,12 @@
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
+}
+
+.form-field:focus {
+	outline: none !important;
+	border: 1px solid rgba(255, 0, 0, 0.418);
+	box-shadow: 0 0 10px #af908d;
 }
 
 .form-button {
@@ -70,6 +90,11 @@
 	cursor: pointer;
 }
 
+.form-button:hover,
+.form-button-secondary:hover {
+	background-color: #dd776eb0;
+}
+
 hr {
 	border-top: 2px dotted #d2b4b4;
 }
@@ -79,25 +104,19 @@ hr {
 	margin: 10px;
 }
 
-.signup-picture > img {
+.signup-picture {
 	width: 100%;
 	height: auto;
 	max-width: 300px;
+	position: relative;
+	left: 10%;
 }
 
 .signup-message,
 .signin-quote {
 	text-align: center;
-	opacity: 0.8;
 	font-size: large;
 	color: white;
-}
-
-.quote-container {
-	display: flex;
-	padding-top: 15%;
-	justify-content: center;
-	align-content: center;
 }
 
 .signin-image {
