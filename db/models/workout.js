@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
     exerciseId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,      
     }
   },
   {})
@@ -33,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       other: "routineId",
       foreignKey: "workoutId"
     }
-
+    Workout.belongsTo( models.User, { foreignKey: 'userId' } )
     Workout.belongsTo( models.Exercise, { foreignKey: "exerciseId" } ),
     Workout.belongsToMany( models.Routine, columnMapping )
   };

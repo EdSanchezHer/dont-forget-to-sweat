@@ -18,10 +18,7 @@ async function isPassword(password, hash) {
   return isPassword;
 };
 
-// (async () => {
-//   const hashedPassword = await getHash('P@ssw0rd', 10);
-//   const passwordIsMatch = await isPassword('P@ssw0rd', hashedPassword);
-// })();
+
 
 module.exports = {
     csrfProtection,
@@ -30,10 +27,3 @@ module.exports = {
     isPassword
 }
 
-
-// function PrintThis(){
-    // const hashed = getHash('password', 10)
-    // console.log(hashed)
-    // const hashed2 = getHash('dD3f4U17$', 10)
-    // console.log(hashed2)
-// }
