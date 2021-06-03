@@ -9,12 +9,12 @@ const { render } = require('pug');
 
 // const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
-const user = require('../db/models/user');
+
 
 
 const loginUser = (req, res, next) => {
   req.session.auth = {
-    userId: user.id
+    userId: db.User.id
   }
 }
 const logoutUser = (req, res) => {
@@ -161,5 +161,9 @@ router.get("/login", csrfProtection, (req, res, next)=> {
     })
   )
 
+  router.post("/logout", (req, res) => {
+    logoutUser(req, res);
+    return res.redirect("/");
+  });
   
 module.exports = router;
