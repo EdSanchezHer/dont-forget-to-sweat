@@ -13,9 +13,10 @@ block content
         p.signup-message Join millions of people getting more organized and fit.
     div.right-side-container
       div.sign-up-container
-        p.form-title Sign up for free
+        +validationErrorSummary(errors)
         div.form-border
-          form(action="/user/register", method="post") 
+          p.form-title Sign up for free
+          form(action="/users/signup", method="post") 
             input(type="hidden" name="_csrf" value=csrfToken)
             +field("fullName", user.fullName, null, "Full Name")
             +field("emailAddress", user.email, null, "Email")

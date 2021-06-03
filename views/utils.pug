@@ -1,3 +1,11 @@
+mixin validationErrorSummary(errors)
+  if errors
+    div(class='errors-border' role='alert')
+      p The following error(s) occurred:
+      ul
+        each error in errors
+          li= error
+
 mixin field(fieldName, fieldValue, fieldType='text', placeholder)
   div.form__input
     input.form-field(type=fieldType id=fieldName name=fieldName value=fieldValue placeholder=placeholder)
