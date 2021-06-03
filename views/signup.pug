@@ -5,18 +5,18 @@ include utils.pug
 block content 
   div.main-container
     div.left-side-container
-      div.logo
+      div.logo-container
         a(href="/")
-          img(src="images/logo.png")
+          img.logo(src="/images/logo.png" width="200")
       div.signup-picture
         img(src="/images/signup-left.png")
     div.right-side-container
-      a(href="/signup") Login
-      p Sign up for free
-      form(action="/user/register", method="post") 
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("fullName", "user.fullName", null, "Full Name")
-        +field("emailAddress", "user.email", null, "Email")
-        +field("username", "user.username", null, "Username")
-        +field("password", "user.password", null, "Password")
-        button(type='submit') Sign Up!
+      div.sign-up-container
+        a(href="/signup") Login
+        p Sign up for free
+        form(action="/user/register", method="post") 
+          input(type="hidden" name="_csrf" value=csrfToken)
+          +field("fullName", user.fullName, null, "Full Name")
+          +field("emailAddress", user.email, null, "Email")
+          +field("password", user.password, null, "Password")
+          button(type='submit') Sign Up!
