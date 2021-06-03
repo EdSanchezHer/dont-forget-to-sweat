@@ -1,12 +1,15 @@
 .navbar__container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: yellow;
 }
 
 .navbar__buttons {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 500px;
+  padding-right: 30px;
 }
 
 .navbar__button {
