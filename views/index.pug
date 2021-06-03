@@ -8,17 +8,19 @@ append head
 block content
   nav.navbar__container 
     a(href="/") 
-      img(src="/images/logo2.png" width="200", alt="logo")
+      img(src="/images/sweat-logo.png" width="225" height="150" alt="logo")
     div.navbar__buttons
       a.navbar__button.navbar__button-login(href="") Login 
       a.navbar__button.navbar__button-signup(href="") Sign Up
       a.navbar__button.navbar__button-demo(href="") Login as a Demo User
-  div.main  
-    h1#header The workout routine app for busy people.
-    a(href="users/signup") Sign Up 
-    img(src="/images/splash-main-picture.png")
-    p Get your routine, online.
-    p You'll never forget to sweat again. 
+  div.whitebox
+  div.splash__container  
+    h1.splash__header The workout routine app for busy people.
+    div.splash__whitebox
+    a.splash__signup-button(href="users/signup") Sign Up 
+    img(src="/images/splash-main-picture.png" width="500" heigh="500")
+    p.splash__second-header Get your routine, online.
+    p.splash__third-header You'll never forget to sweat again. 
   footer
     div.row-links
       div.col-picture

@@ -76,14 +76,7 @@ hr {
 
 .logo {
 	width: 100px;
-	margin-left: 10%;
-	margin-top: 10px;
-}
-
-.signup-picture {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	margin: 10px;
 }
 
 .signup-picture > img {
