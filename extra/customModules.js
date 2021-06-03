@@ -1,14 +1,20 @@
-function checkType(obj) {
-    if (obj.exerciseType === 'Power-lift){
-        return [weight, repetitions, sets]
-    } else if (obj.exerciseType === 'Machine'){
-        return [ resistance, repetitions, sets ]
-    } else if (obj.exerciseType === 'Calesthenics'){
-        return [ resistance, repetitions, sets ]        
-    } else if (obj.exerciseType === 'Cardio'){
-        return [distance, resistance]
+let checkType = (obj) => {
+    let typeOfExercise = obj.exerciseType;
+    
+    if(typeOfExercise === 'Power-lift'){
+        return [weight, repetitions, sets];
+    }
+    else if(typeOfExercise === 'Machine' ){
+        return [resistance, repetitions, sets];
+    }
+    else if(typeOfExercise === 'Calesthenics'){
+        return [resistance, repetitions, sets];
+    }
+    else if(typeOfExercise === 'Cardio'){
+        return [distance, resistance];
     }
 }
 
-
-module.exports= 
+module.exports = {
+    checkType,
+}
