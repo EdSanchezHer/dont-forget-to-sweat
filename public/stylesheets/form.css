@@ -1,10 +1,25 @@
 .main-container {
-	font-family: poppins;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	grid-template-areas: "left right";
 }
 
 .left-side-container {
-	height: 100%;
+	grid-area: left;
+	height: 100vh;
 	background-color: var(--main-color);
+}
+
+.right-side-container {
+	grid-area: right;
+}
+
+.logo {
+	width: 100px;
+	margin: 10px;
+}
+
+.signup-picture > img {
+	width: 100%;
+	height: auto;
 }
