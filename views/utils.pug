@@ -4,7 +4,7 @@ mixin validationErrorSummary(errors)
       p The following error(s) occurred:
       ul
         each error in errors
-          li= error
+          li.error= error
 
 mixin field(fieldName, fieldValue, fieldType='text', placeholder)
   div.form__input
