@@ -12,7 +12,7 @@ block content
       form(action="/exercises", method="get") 
           input(type="hidden" name="_csrf" value=csrfToken)
           label(for="muscle-group") Choose a muscle group:
-          select(onchange="this.form.submit()"id="muscle-group" name="muscle-group" value=muscleGroup)
+          select(onchange="this.form.submit()" id="muscle-group" name="muscle-group" value=muscleGroup)
             option(value="Arms") Arms 
             option(value="Chest") Chest 
             option(value="Legs") Legs 
