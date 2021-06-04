@@ -13,9 +13,10 @@ block content
             p -David Goggins
             img.signin-image(src="/images/david.jpg")
     div.right-side-container
+      +validationErrorSummary(errors)
       p.form-title Welcome back
       div.form-border
-        form(action="/user/register", method="post") 
+        form(action="/users/login", method="post") 
           input(type="hidden" name="_csrf" value=csrfToken)
           +field("emailAddress", emailAddress, "email", "Email")
           +field("password", null, "password", "Password")
