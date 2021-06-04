@@ -6,9 +6,9 @@ const csrfProtection = csrf({cookie : true})
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch((e) => next(e))
 
 
-function getHash(password, saltRounds) {
-  const hash = bcrypt.hashSync(password, saltRounds);
-  console.log(hash);
+async function getHash(password, saltRounds) {
+  const hash = bcrypt.hash(password, saltRounds);
+  // console.log(hash);
   return hash;
 }
 

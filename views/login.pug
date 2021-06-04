@@ -15,9 +15,9 @@ block content
     div.right-side-container
       p.form-title Welcome back
       div.form-border
-        form(action="/user/register", method="post") 
+        form(action="/users/login", method="post") 
           input(type="hidden" name="_csrf" value=csrfToken)
-          +field("emailAddress", emailAddress, "email", "Email")
+          +field("email", emailAddress, "email", "Email")
           +field("password", null, "password", "Password")
           button.form-button(type='submit') Log In
           hr
