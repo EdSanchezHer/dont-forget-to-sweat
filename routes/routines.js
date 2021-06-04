@@ -26,7 +26,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 // get specific routine
 
-router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+router.get('/routines/:id', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
     const routineId = parseInt(req.params.id, 10);
 
@@ -47,7 +47,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 
 
 
-router.post('/routines/create', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/routine/create', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
     const { } = req.body.data //wrong variable
     const newRoutine = await db.Routine.build({
@@ -62,10 +62,13 @@ router.post('/routines/create', csrfProtection, asyncHandler(async (req, res, ne
 
     await newRoutine.save();
     
-    
+    res.status(203)
 
 }))
 
-router.put('/routine/:id')
+router.put('/routine/:id(\\d+)', csrfProtection, asyncHandler( async (req, res, next) => {
+    const currentUserId = res.locals.user.id;
+    const routineId = parseInt(req.params.id)
+}))
 
 router.delete('/routine/:id')
