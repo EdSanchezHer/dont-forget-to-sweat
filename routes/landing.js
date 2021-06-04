@@ -4,9 +4,9 @@ const router = express.Router();
 // const { requireAuth } = require("../auth")
 const { asyncHandler, csrfProtection } = require("./utils");
 
-router.get("/gym", requireAuth, (req, res) => {
-	res.render("gym");
-});
+router.get("/app", requireAuth, (req, res) => {
+    res.render("app");
+})
 // get routine by day
 
 router.get('/routine/(\\d+day)', csrfProtection, asyncHandler(async ( req, res) => {

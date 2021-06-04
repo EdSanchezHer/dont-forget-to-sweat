@@ -14,8 +14,8 @@ block content
     div.right-side-container
       div.sign-up-container
         +validationErrorSummary(errors)
-        p.form-title Sign up for free
         div.form-border
+          p.form-title Sign up for free
           form(action="/users/signup", method="post") 
             input(type="hidden" name="_csrf" value=csrfToken)
             +field("fullName", user.fullName, null, "Full Name")
