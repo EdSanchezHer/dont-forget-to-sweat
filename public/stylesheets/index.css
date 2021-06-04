@@ -70,3 +70,75 @@ h1 {
   color: #fff;
   font-weight:lighter;
 }
+
+.footer__grid-container {
+  display: flex;
+  flex-direction: column;
+  /* background-color: var(--main-light-color); */
+}
+
+.row__footer-items {
+  display:flex;
+  justify-content: center;
+  padding-right: 100px;
+}
+
+.row__footer-legal {
+  display:flex;
+  justify-content: center;
+  padding-right: 100px;
+}
+
+.column__footer-item {
+  padding-right:50px;
+}
+
+.column__footer-aboutus {
+  display:flex;
+  flex-direction: column;
+}
+
+.footer__links {
+  text-decoration: none;
+  color: #8b8b94;
+  font-weight: lighter;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  /* padding:1px; */
+}
+
+.footer__links:hover {
+  background-color: #cccccc;
+}
+
+.footer-header {
+  color: #8b8b94;
+  font-weight: bold;
+  font-size: 18px;
+  display: flex;
+  padding-left: 15px;
+}
+
+.footer__legal-terms {
+  display: flex;
+  align-items: center;
+}
+
+.footer__whitebox {
+  width:200px;
+}
+
+.footer__whitebox-2 {
+  height:50px;
+}
+.footer__legal-items {
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-bottom: 50px;
+  padding-top: 15px;
+}
