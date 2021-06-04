@@ -24,16 +24,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
     res.json({ allRoutines })
 }))
 
-// get specific list
-
-// router.get('/add', csrfProtection, asyncHandler(async (req, res, next) => {
-//     const currentUserId = res.locals.user.id;
-//     const newRoutine = Routine.build()
-
-
-
-
-// }))
+// get specific routine
 
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
@@ -52,9 +43,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 }))
 
 
-router.post('/routines', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/routines/create', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
-
+    const { } = req.body.data //wrong variable
+    const newRoutine = db.Routine.build()
     
 
 }))

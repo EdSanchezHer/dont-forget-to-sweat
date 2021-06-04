@@ -15,6 +15,10 @@ let checkType = (obj) => {
     }
 }
 
+function 
+
+
+
 module.exports = {
     checkType,
 }
