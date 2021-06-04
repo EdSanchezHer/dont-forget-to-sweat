@@ -128,7 +128,7 @@ router.post(
           
           // const workout = db.Workout.build()
 					
-          return res.render("gym", {title: "Let's get to sweatin'!", workout, csrfToken: csrfToken(req)});
+          return res.render("app", {title: "Let's get to sweatin'!", workout, csrfToken: csrfToken(req)});
 				}
 			}
 			errors.push("Login failed for the provided email address and password");
