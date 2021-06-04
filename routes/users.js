@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const bcrypt = require("bcryptjs")
-const {csrfProtection, asyncHandler} = require("./utils");
+const bcrypt = require("bcryptjs");
+const { csrfProtection, asyncHandler } = require("./utils");
 // const { render } = require("pug");
 // const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
@@ -9,18 +9,15 @@ const { User } = require("./../db/models");
 const { loginUser, logoutUser } = require("../auth");
 
 //TITLE: START OF VALIDATORS
-router.get(
-	"/signup",
-	csrfProtection, ((req, res, next) => {
-		const user = User.build();
+router.get("/signup", csrfProtection, (req, res, next) => {
+	const user = User.build();
 
-		res.render("signup", {
-			title: "Sign Up",
-			user,
-			csrfToken: req.csrfToken(),
-		});
-	})
-);
+	res.render("signup", {
+		title: "Sign Up",
+		user,
+		csrfToken: req.csrfToken(),
+	});
+});
 
 const userValidator = [
 	check("fullName")
@@ -36,14 +33,14 @@ const userValidator = [
 		.isEmail()
 		.withMessage("Email address is not a valid email")
 		.custom((value) => {
-				return User.findOne({ where: { email: value } }).then((user) => {
-					if (user) {
-						return Promise.reject(
-							"The Email given is already used by another account"
-						);
-					}
-				});
-			}),
+			return User.findOne({ where: { email: value } }).then((user) => {
+				if (user) {
+					return Promise.reject(
+						"The Email given is already used by another account"
+					);
+				}
+			});
+		}),
 	check("password")
 		.exists({ checkFalsey: true })
 		.withMessage("Please enter a password")
@@ -120,7 +117,10 @@ router.post(
 		if (validatorError.isEmpty()) {
 			const user = await User.findOne({ where: { email } });
 			if (user !== null) {
-				const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+				const passwordMatch = await bcrypt.compare(
+					password,
+					user.hashedPassword.toString()
+				);
 				if (passwordMatch) {
 					loginUser(req, res, user);
 					return res.redirect("/gym");
@@ -137,10 +137,9 @@ router.post(
 		});
 	})
 );
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
 	logoutUser(req, res);
-	res.redirect('/');
-  });
-  
+	res.redirect("/");
+});
 
 module.exports = router;
