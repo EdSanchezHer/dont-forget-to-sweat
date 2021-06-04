@@ -6,12 +6,12 @@ const {csrfProtection, asyncHandler} = require("./utils");
 // const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const { User } = require("./../db/models");
-const {loginUser, logoutUser } = require("../auth");
+const { loginUser, logoutUser } = require("../auth");
 
 //TITLE: START OF VALIDATORS
 router.get(
 	"/signup",
-	csrfProtection, ((req, res) => {
+	csrfProtection, ((req, res, next) => {
 		const user = User.build();
 
 		res.render("signup", {
@@ -89,7 +89,7 @@ router.post(
 			// user.hashedPassword = getHash(user.password, 8);
 			await user.save();
 			loginUser(req, res, user);
-			res.redirect("/login");
+			res.redirect("/users/login");
 		} else {
 			const errors = validatorError.array().map((error) => error.msg);
 			res.render("signup", {
@@ -137,7 +137,10 @@ router.post(
 		});
 	})
 );
-
+router.post('/logout', (req, res) => {
+	logoutUser(req, res);
+	res.redirect('/');
+  });
   
 
 module.exports = router;
