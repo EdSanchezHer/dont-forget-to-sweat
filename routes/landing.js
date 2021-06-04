@@ -3,6 +3,7 @@ const { requireAuth } = require("../auth");
 const router = express.Router();
 // const { requireAuth } = require("../auth")
 const { asyncHandler, csrfProtection } = require("./utils");
+const db = require("../db/models");
 
 router.get("/app", requireAuth, (req, res) => {
 	res.render("app");
@@ -31,7 +32,9 @@ router.get(
 	asyncHandler(async (req, res) => {
 		const { muscleGroup } = req.body;
 
-		const exerciseList = await db.Exercise.findAll({ where: { muscleGroup } });
+		const exerciseList = await db.Exercise.findAll({
+			where: { muscleGroup },
+		});
 
 		if (!exerciseList) throw error; // put in error validation
 
