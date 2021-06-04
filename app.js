@@ -36,10 +36,6 @@ app.use(
   })
 );
 
-// async function getHash(password, saltRounds) {
-//   const hash = await bcrypt.hash(password, saltRounds);
-//   console.log(hash);
-// }
 
 // create Session table if it doesn't already exist
 store.sync();
