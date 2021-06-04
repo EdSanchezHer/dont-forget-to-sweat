@@ -1,5 +1,6 @@
 .main-container {
 	display: grid;
+	background-color: var(--main-color);
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: auto;
 	grid-template-areas:
@@ -19,6 +20,7 @@
 }
 
 .right-side-container {
+	background-color: white;
 	grid-area: right;
 	display: flex;
 	align-content: center;
@@ -131,4 +133,8 @@ hr {
 	padding: 20px;
 	width: 420px;
 	color: red;
+}
+
+.error {
+	list-style-type: none;
 }
