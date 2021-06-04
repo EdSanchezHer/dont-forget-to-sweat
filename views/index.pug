@@ -21,28 +21,33 @@ block content
     img(src="/images/splash-main-picture.png" width="500" heigh="500")
     p.splash__second-header Get your routine, online.
     p.splash__third-header You'll never forget to sweat again. 
-  footer
-    div.row-links
-      div.col-picture
-        img(src="")
-      div.col-company
-        p.footer-header Company
-        a(href="/about-us") About Us 
-      div.col-product
+  footer.footer__grid-container
+    div.row__footer-items
+      div.column__footer-item.column__footer-picture
+        img(src="/images/footer-picture.png" width="100" height="100")
+      div.column__footer-item.column__footer-aboutus
+        p.footer-header About Us
+        a.footer__links(href="/about-us") Eduardo Sanchez
+        a.footer__links(href="/about-us") Huy Lam
+        a.footer__links(href="/about-us") Anthony Huynh
+        a.footer__links(href="/about-us") Jason Lettiota
+      div.column__footer-item.column__footer-product
         p.footer-header Product
-        a(href="https://github.com/EdSanchezHer/dont-forget-to-sweat/wiki") Don't Forget to Sweat Wiki
-      div.col-community
+        a.footer__links(href="https://github.com/EdSanchezHer/dont-forget-to-sweat/wiki") Don't Forget to Sweat Wiki
+      div.column__footer-item.column__footer-community
         p.footer-header Community  
-        a(href="https://www.appacademy.io/") App Academy 
-      div.col-support
+        a.footer__links(href="https://www.appacademy.io/") App Academy 
+      div.column__footer-item.column__footer-support
         p.footer-header Support 
-        a(href="https://github.com/EdSanchezHer/dont-forget-to-sweat/issues") Report Issue
-    div.row-legal
+        a.footer__links(href="https://github.com/EdSanchezHer/dont-forget-to-sweat/issues") Report Issue
+    div.footer__whitebox-2
+    div.row__footer-legal
       p © 2020 Don't Forget to Sweat
-      ul
-        li 
-          a(href="/github") Terms
-        li 
-          a(href="/github") Privacy
-        li 
-          a(href="/github") Security
+      div.footer__whitebox
+      div.footer__legal-terms
+        div.footer__legal-items
+          a.footer__links(href="/github") Terms
+        div.footer__legal-items 
+          a.footer__links(href="/github") Privacy
+        div.footer__legal-items 
+          a.footer__links(href="/github") Security
