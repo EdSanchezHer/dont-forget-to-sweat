@@ -2,7 +2,7 @@
 const bcrypt = require("bcryptjs");
 const { getHash } = require("../../routes/utils");
 
-const pword = getHash("password", 10);
+// const pword = await getHash("password", 10);
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -14,7 +14,7 @@ module.exports = {
           email: "fake@email.com",
           bodyWeight: "194",
           bodyFatPercentage: 12,
-          hashedPassword: pword,
+          hashedPassword: bcrypt.hashSync("pword", 10),
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -34,7 +34,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('People', null, {});
+    return queryInterface.bulkDelete('Users', null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
