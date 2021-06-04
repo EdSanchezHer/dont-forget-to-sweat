@@ -1,0 +1,34 @@
+.main-app {
+	display: grid;
+	grid-template-columns: 20% 1fr 1fr;
+	grid-template-rows: 15% 25% 1fr;
+	grid-template-areas:
+		"nav nav nav"
+		"sidebar quotes description"
+		"sidebar workouts description";
+}
+
+.sidebar {
+	grid-area: sidebar;
+	background-color: aqua;
+}
+
+.app_navbar {
+	grid-area: nav;
+	background-color: blue;
+}
+
+.quotes {
+	grid-area: quotes;
+	background-color: red;
+}
+
+.description {
+	grid-area: description;
+	background-color: green;
+}
+
+.workouts {
+	grid-area: workouts;
+	background-color: yellow;
+}

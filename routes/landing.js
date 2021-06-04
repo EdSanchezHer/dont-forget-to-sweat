@@ -3,10 +3,8 @@ const { requireAuth } = require("../auth");
 const router = express.Router();
 // const { requireAuth } = require("../auth")
 router.get("/gym", requireAuth, (req, res) => {
-    res.render("gym");
-})
+	res.render("app");
+});
 
-router.post("/users/logout", (req, res) => {
-    
-})
-module.exports = router
+router.post("/users/logout", (req, res) => {});
+module.exports = router;
