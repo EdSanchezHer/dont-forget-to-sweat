@@ -6,16 +6,21 @@ block content
     div.left-side-container
       div.logo-container
         a(href="/")
-          img.logo(src="/images/logo.png")
-      div.signin-quote
-        h2 “I don't stop when I'm tired, I stop when I'm done.” 
-        p -David Goggins
-      div.signin-image
-        img(src="/images/david.jpg", alt="")
+          img.logo(src="/images/sweat-logo.png")
+      div.left-area
+        div.signin-quote
+            p “I don't stop when I'm tired, I stop when I'm done.” 
+            p -David Goggins
+            img.signin-image(src="/images/david.jpg")
     div.right-side-container
-      a(href="/signup") Sign up for free
-      p Been here before? Welcome back!
-      form(action="/user/register", method="post") 
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("emailAddress", "emailAddress", "email", "Email")
-        +field("password", "password", "password", "Password")
+      p.form-title Welcome back
+      div.form-border
+        form(action="/user/register", method="post") 
+          input(type="hidden" name="_csrf" value=csrfToken)
+          +field("emailAddress", emailAddress, "email", "Email")
+          +field("password", null, "password", "Password")
+          button.form-button(type='submit') Log In
+          hr
+        a(href="/users/signup") 
+          button.form-button-secondary(type) Sign Up
+
