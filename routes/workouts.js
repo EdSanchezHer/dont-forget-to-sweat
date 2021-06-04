@@ -43,14 +43,14 @@ router.post('/', csrfProtection, asyncHandler(async (req, res) => {
         userId: currentUserId
     })
     await workout.save()
-    res.json(  )
+    res.status(203)
 
 }))
 
 
 router.put('/workout/:id', csrfProtection, asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
-    const updated = req.body
+    const { repetitions, sets, laps, weight, distance }  = req.body
 
     const workoutId = parseInt(req.params.id, 10);
     
@@ -60,11 +60,11 @@ router.put('/workout/:id', csrfProtection, asyncHandler(async (req, res) => {
         throw error // put in validation error
     }
     userWorkout
-            .repetitions
-            .sets
-            .laps
-            .weight
-            .distance
+            repetitions
+            sets
+            laps
+            weight
+            distance
 
 
     res.json({ userWorkout });

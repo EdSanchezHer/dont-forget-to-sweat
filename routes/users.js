@@ -7,6 +7,7 @@ const { csrfProtection, asyncHandler } = require("./utils");
 const { check, validationResult } = require("express-validator");
 const { User } = require("./../db/models");
 const { loginUser, logoutUser } = require("../auth");
+const { db } = require("./../db/models")
 
 //TITLE: START OF VALIDATORS
 router.get("/signup", csrfProtection, (req, res, next) => {
@@ -116,14 +117,18 @@ router.post(
 
 		if (validatorError.isEmpty()) {
 			const user = await User.findOne({ where: { email } });
+      
 			if (user !== null) {
-				const passwordMatch = await bcrypt.compare(
-					password,
-					user.hashedPassword.toString()
-				);
+
+        const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
+
+
 				if (passwordMatch) {
-					loginUser(req, res, user);
-					return res.redirect("/gym");
+          loginUser(req, res, user);
+          
+          // const workout = db.Workout.build()
+					
+          return res.render("gym", {title: "Let's get to sweatin'!", workout, csrfToken: csrfToken(req)});
 				}
 			}
 			errors.push("Login failed for the provided email address and password");
