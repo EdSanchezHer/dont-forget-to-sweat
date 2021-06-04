@@ -6,13 +6,6 @@ const { asyncHandler, csrfProtection } = require('./utils')
 
 
 router.get("/gym", requireAuth, (req, res) => {
-<<<<<<< HEAD
-	res.render("app");
-});
-
-router.post("/users/logout", (req, res) => {});
-module.exports = router;
-=======
     res.render("gym");
 })
 // get routine by day
@@ -46,4 +39,3 @@ router.post("/users/logout", (req, res) => {
       
 })
 module.exports = router
->>>>>>> c7b51ce1ba62b6e0e3ad740efeab0b01d62440fd
