@@ -1,17 +1,40 @@
 .navbar__container {
   display: flex;
   justify-content: space-around;
-  background-color: yellow;
+  background-color: var(--main-color);
+  position: fixed;
+  width: 100%;
 }
 
 .navbar__buttons {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 500px;
-  padding-right: 30px;
+  width: 400px;
+  padding-right: 50px;
+  color: #e3a1a1;
 }
 
 .navbar__button {
   text-decoration: none;
 }
+
+.navbar__button-login {
+  font-size: 14px;
+}
+
+.navbar__button-signup {
+  font-size: 14px;
+}
+
+.navbar__button-demo {
+  font-size: 18px;
+  border: 2px solid #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.navbar__button:hover {
+  color: #fff;
+}
+
