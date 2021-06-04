@@ -18,17 +18,7 @@ router.get('/routine/(\\d+day)', csrfProtection, asyncHandler(async ( req, res) 
     if (!targetRoutine) throw error // add in error validation
 
     res.json({ targetRoutine })
-}) )
-
-
-
-
-
-		if (!targetRoutine) throw error; // add in error validation
-
-		res.json({ targetRoutine });
-	})
-);
+}) );
 
 router.get(
 	"/exercises",
