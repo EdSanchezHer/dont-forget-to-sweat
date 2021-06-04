@@ -1,29 +1,26 @@
 var express = require("express");
 var router = express.Router();
-
-const {
-	csrfProtection,
-	asyncHandler,
-	getHash,
-	isPassword,
-} = require("./utils");
-
-const db = require("../db/models");
-const { render } = require("pug");
-
+const bcrypt = require("bcryptjs")
+const {csrfProtection, asyncHandler} = require("./utils");
+// const { render } = require("pug");
 // const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
-const user = require("../db/models/user");
+const { User } = require("./../db/models");
+const {loginUser, logoutUser } = require("../auth");
 
-const loginUser = (req, res, next) => {
-	req.session.auth = {
-		userId: user.id,
-	};
-};
-const logoutUser = (req, res) => {
-	delete req.session.auth;
-};
 //TITLE: START OF VALIDATORS
+router.get(
+	"/signup",
+	csrfProtection, ((req, res) => {
+		const user = User.build();
+
+		res.render("signup", {
+			title: "Sign Up",
+			user,
+			csrfToken: req.csrfToken(),
+		});
+	})
+);
 
 const userValidator = [
 	check("fullName")
@@ -31,7 +28,6 @@ const userValidator = [
 		.withMessage("Enter full name please")
 		.isLength({ max: 75 })
 		.withMessage("Full name can not be more than 75 characters long"),
-
 	check("email")
 		.exists({ checkFalsey: true })
 		.withMessage("Enter an email please")
@@ -40,14 +36,14 @@ const userValidator = [
 		.isEmail()
 		.withMessage("Email address is not a valid email")
 		.custom((value) => {
-			return db.User.findOne({ where: { email: value } }).then((user) => {
-				if (user) {
-					return Promise.reject(
-						"The Email given is already used by another account"
-					);
-				}
-			});
-		}),
+				return User.findOne({ where: { email: value } }).then((user) => {
+					if (user) {
+						return Promise.reject(
+							"The Email given is already used by another account"
+						);
+					}
+				});
+			}),
 	check("password")
 		.exists({ checkFalsey: true })
 		.withMessage("Please enter a password")
@@ -72,56 +68,28 @@ const loginValidator = [
 
 //TITLE: END of Validators
 
-//* START of routes
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-router.get(
-	"/signup",
-	csrfProtection,
-	asyncHandler(async (req, res) => {
-		const user = await db.User.build({
-			fullName: null,
-			email: null,
-			hashedPassword: null,
-			bodyWeight: null,
-			bodyFatPercentage: null,
-			fitnessLevel: null,
-		});
-
-		res.render("signup", {
-			title: "Sign Up",
-			user,
-			csrfToken: req.csrfToken(),
-		});
-	})
-);
-
 router.post(
 	"/signup",
 	csrfProtection,
 	userValidator,
-	asyncHandler(async (req, res) => {
+	asyncHandler(async (req, res, next) => {
 		const { fullName, email, password } = req.body;
 
-		const user = await db.User.build({
+		const user = User.build({
 			fullName,
 			email,
 			password,
-			bodyWeight: null,
-			bodyFatPercentage: null,
-			fitnessLevel: null,
 		});
 
 		const validatorError = validationResult(req);
 
 		if (validatorError.isEmpty()) {
-			user.hashedPassword = getHash(user.password, 8);
+			const hashedPassword = await bcrypt.hash(password, 10);
+			user.hashedPassword = hashedPassword;
+			// user.hashedPassword = getHash(user.password, 8);
 			await user.save();
 			loginUser(req, res, user);
-			res.redirect("/app");
+			res.redirect("/login");
 		} else {
 			const errors = validatorError.array().map((error) => error.msg);
 			res.render("signup", {
@@ -144,21 +112,18 @@ router.post(
 	"/login",
 	csrfProtection,
 	loginValidator,
-	asyncHandler(async (req, res) => {
+	asyncHandler(async (req, res, next) => {
 		const { email, password } = req.body;
 		const errors = [];
 		const validatorError = validationResult(req);
 
 		if (validatorError.isEmpty()) {
-			const user = await db.User.findOne({ where: { email } });
+			const user = await User.findOne({ where: { email } });
 			if (user !== null) {
-				const passwordMatch = await isPassword(
-					password,
-					user.hashedPassword.toString()
-				);
+				const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
 				if (passwordMatch) {
 					loginUser(req, res, user);
-					return res.redirect("/app");
+					return res.redirect("/gym");
 				}
 			}
 			errors.push("Login failed for the provided email address and password");
@@ -173,5 +138,6 @@ router.post(
 	})
 );
 
+  
 
 module.exports = router;

@@ -19,7 +19,7 @@ block content
           form(action="/users/signup", method="post") 
             input(type="hidden" name="_csrf" value=csrfToken)
             +field("fullName", user.fullName, null, "Full Name")
-            +field("emailAddress", user.email, null, "Email")
+            +field("email", user.email, null, "Email")
             +field("password", user.password, "password", "Password")
             button.form-button(type='submit') Sign Up
             hr
