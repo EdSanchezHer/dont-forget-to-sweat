@@ -7,16 +7,21 @@ block content
     div.left-side-container
       div.logo-container
         a(href="/")
-          img.logo(src="/images/logo.png" width="200")
-      div.signup-picture
-        img(src="/images/signup-left.png")
+          img.logo(src="/images/sweat-logo.png")
+      div.left-area
+        img.signup-picture(src="/images/signup-left.png")
+        p.signup-message Join millions of people getting more organized and fit.
     div.right-side-container
       div.sign-up-container
-        a(href="/signup") Login
-        p Sign up for free
-        form(action="/user/register", method="post") 
-          input(type="hidden" name="_csrf" value=csrfToken)
-          +field("fullName", user.fullName, null, "Full Name")
-          +field("emailAddress", user.email, null, "Email")
-          +field("password", user.password, null, "Password")
-          button(type='submit') Sign Up!
+        +validationErrorSummary(errors)
+        div.form-border
+          p.form-title Sign up for free
+          form(action="/users/signup", method="post") 
+            input(type="hidden" name="_csrf" value=csrfToken)
+            +field("fullName", user.fullName, null, "Full Name")
+            +field("emailAddress", user.email, null, "Email")
+            +field("password", user.password, "password", "Password")
+            button.form-button(type='submit') Sign Up
+            hr
+          a(href="/users/login") 
+            button.form-button-secondary(type) Log In
