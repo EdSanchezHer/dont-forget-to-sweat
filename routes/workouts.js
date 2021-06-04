@@ -6,7 +6,7 @@ const db = require('../db/models');
 const workout = require('../db/models/workout');
 
 
-router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/workout/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
     const workoutId = parseInt(req.params.id, 10);
     
@@ -20,7 +20,9 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
 
 }));
 
-router.get('/',  )
+
+
+// router.get('/',  )
 
 
 

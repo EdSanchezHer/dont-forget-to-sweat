@@ -8,8 +8,17 @@ const { asyncHandler, csrfProtection } = require('./utils')
 router.get("/gym", requireAuth, (req, res) => {
     res.render("gym");
 })
+// get routine by day
+router.get('/routine/\\d+day', csrfProtection, asyncHandler(async ( req, res) => {
+    const currentUserId = res.local.user.id;
+    const { tag } = req.params
+    console.log(req.params)
+    const targetRoutine = await db.Routine.findAll({ where: { tag }})
 
+    if (!targetRoutine) throw error // add in error validation
 
+    res.json({ targetRoutine })
+}) )
 
 
 
@@ -27,6 +36,6 @@ router.get("/exercises", asyncHandler( async (req, res) => {
 
 
 router.post("/users/logout", (req, res) => {
-    
+      
 })
 module.exports = router

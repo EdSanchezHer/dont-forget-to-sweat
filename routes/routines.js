@@ -42,11 +42,26 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     res.json({ RoutineWorkouts })    
 }))
 
+// get routine by tag
+
+
+
 
 router.post('/routines/create', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
     const { } = req.body.data //wrong variable
-    const newRoutine = db.Routine.build()
+    const newRoutine = await db.Routine.build({
+        title,
+        tags,
+        expires: Date.now() + (1000*60*60*24*7),
+        time,
+        userId: currentUserId
+    })
+    
+    if ( !newRoutine ) throw error // input error validations
+
+    await newRoutine.save();
+    
     
 
 }))

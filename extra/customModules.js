@@ -15,7 +15,7 @@ let checkType = (obj) => {
     }
 }
 
-function 
+
 
 
 
