@@ -18,7 +18,7 @@ block content
       div.form-border
         form(action="/users/login", method="post") 
           input(type="hidden" name="_csrf" value=csrfToken)
-          +field("emailAddress", emailAddress, "email", "Email")
+          +field("email", emailAddress, "email", "Email")
           +field("password", null, "password", "Password")
           button.form-button(type='submit') Log In
           hr

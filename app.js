@@ -9,8 +9,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
 const appRouter = require('./routes/app-router');
 const usersRouter = require('./routes/users');
-
-
+const gymRouter = require('./routes/landing');
+const router = require('./routes/users');
+const { restoreUser } = require('./auth');
 
 // const bcrypt = require('bcryptj');
 const app = express();
@@ -22,6 +23,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
@@ -44,7 +46,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // app.use('/demo', demoRouter);
 // app.use('/routines', routinesRouter);
-
+// store.sync()
+app.use(restoreUser);
+app.use(gymRouter);
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {
 //   next(createError(404));
