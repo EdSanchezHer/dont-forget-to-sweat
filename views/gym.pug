@@ -3,7 +3,7 @@ extends layout
 include utils.pug
 
 append head 
-    script(src="javascripts/exercise.js" async defer) 
+    script(src="javascripts/gym.js" async defer) 
 
 block content
   div.main-app
@@ -13,7 +13,9 @@ block content
     //- Click on a day
     //- Get routines/day
     //- Display async info
-    div.quotes Quotes
+    div.quotes
+      p#quote
+      button#new-quote New Quote
     div.workouts
       label(for="muscle-group") Choose a muscle group:
       select( id="muscle-selection" name="muscle-group" value=muscleGroup)

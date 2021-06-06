@@ -1,7 +1,9 @@
 .main-app {
 	display: grid;
 	grid-template-columns: 20% 1fr 1fr;
-	grid-template-rows: 15% 25% 1fr;
+	grid-template-rows: 10% 25% 1fr;
+	width: 100vw;
+	height: 100vh;
 	grid-template-areas:
 		"nav nav nav"
 		"sidebar quotes description"
