@@ -9,17 +9,22 @@ block content
   div.main-app
     div.app_navbar Nav
     div.sidebar Sidebar
+    //- M-S 
+    //- Click on a day
+    //- Get routines/day
+    //- Display async info
     div.quotes Quotes
-    div.workouts Workouts
+    div.workouts
       label(for="muscle-group") Choose a muscle group:
-      select(onchange="getMuscleGroup()" id="mgselection" name="muscle-group" value=muscleGroupx)
+      select( id="muscle-selection" name="muscle-group" value=muscleGroup)
+          option#muscle-select() ---Please select one---
           option(value="Arms") Arms 
           option(value="Chest") Chest 
           option(value="Legs") Legs 
           option(value="Back") Back 
           option(value="Core") Core 
           option(value="Cardio") Cardio      
-      form(action="/workouts" method="post" id="newWorkout")
+      form(action="/workouts" method="post" id="workout-form" class="hidden")
           input(type="hidden" name="_csrf" value=csrfToken)
           label(for="chosen-exercise") Choose a exercise:
           select(onchange="unhide()" name="chosen-exercise" id="chosen-exercise" value=excercise)
@@ -29,4 +34,4 @@ block content
           +makeInputs("resistance", "Resistance", resistance, 'machine calisthenics cardio')     
           +makeInputs("distance", "Distance", distance, 'cardio')
           button.form-button(type="submit") add Workout   
-  div.description Description
+    div.description Description

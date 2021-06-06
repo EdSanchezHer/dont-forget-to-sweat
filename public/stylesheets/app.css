@@ -15,7 +15,7 @@
 
 .app_navbar {
 	grid-area: nav;
-	background-color: blue;
+	background-color: var(--main-color);
 }
 
 .quotes {
@@ -31,4 +31,8 @@
 .workouts {
 	grid-area: workouts;
 	background-color: yellow;
+}
+
+.hidden {
+	visibility: hidden;
 }
