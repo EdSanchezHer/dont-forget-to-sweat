@@ -1,5 +1,7 @@
 extends layout
 
+include utils.pug
+
 append head 
     script(src="javascripts/exercise.js" async defer) 
 
@@ -10,14 +12,21 @@ block content
     div.quotes Quotes
     div.workouts Workouts
       label(for="muscle-group") Choose a muscle group:
-      select(id="mgselection" name="muscle-group")
+      select(onchange="getMuscleGroup()" id="mgselection" name="muscle-group" value=muscleGroupx)
           option(value="Arms") Arms 
           option(value="Chest") Chest 
           option(value="Legs") Legs 
           option(value="Back") Back 
           option(value="Core") Core 
-          option(value="Cardio") Cardio 
-      form(action="/workouts" method="post")
+          option(value="Cardio") Cardio      
+      form(action="/workouts" method="post" id="newWorkout")
           input(type="hidden" name="_csrf" value=csrfToken)
-          label(for="exercise") Choose a exercise:
-    div.description Description
+          label(for="chosen-exercise") Choose a exercise:
+          select(onchange="unhide()" name="chosen-exercise" id="chosen-exercise" value=excercise)
+          +makeInputs("weight", "Weight", weight, "power-lift")     
+          +makeInputs("repetitions", "Repetitions", repetitions, 'machine power-lift calisthenics')     
+          +makeInputs("sets", "Sets", sets, 'power-lift calisthenics machine')     
+          +makeInputs("resistance", "Resistance", resistance, 'machine calisthenics cardio')     
+          +makeInputs("distance", "Distance", distance, 'cardio')
+          button.form-button(type="submit") add Workout   
+  div.description Description

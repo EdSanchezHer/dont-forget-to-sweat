@@ -70,7 +70,7 @@ router.get(
 	csrfProtection,
 	asyncHandler(async (req, res) => {
         const currentUserId = res.local.user.id;
-		const { tag } = req.params.tag;
+		const tag = req.params
 		console.log(req.params);
 		const targetRoutine = await db.Routine.findAll({
             where: { tag, userId: currentUserId },

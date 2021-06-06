@@ -5,8 +5,9 @@ const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
 const workout = require('../db/models/workout');
 
+// get specific workout ( typically for editing / delete )
 
-router.get('/workout/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
     const workoutId = parseInt(req.params.id, 10);
     
@@ -20,9 +21,11 @@ router.get('/workout/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) =
 
 }));
 
+// get all current workouts
 
+router.get('/', (req, res) => {
 
-// router.get('/',  )
+} )
 
 
 
@@ -32,7 +35,7 @@ router.get('/workout/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) =
 router.post('/', csrfProtection, asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
     const { exerciseId, weight, resistance, repetitions, sets, distance } = req.body
-
+    
     const workout = db.Workout.build({
         exerciseId,
         weight,
@@ -42,33 +45,39 @@ router.post('/', csrfProtection, asyncHandler(async (req, res) => {
         distance,
         userId: currentUserId
     })
+    // insert validations and error checking
+
     await workout.save()
     res.status(203)
 
 }))
 
 
-router.put('/workout/:id', csrfProtection, asyncHandler(async (req, res) => {
+router.put('/:id', csrfProtection, asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
-    const { repetitions, sets, laps, weight, distance }  = req.body
+    const { exerciseId, repetitions, sets, resistance, weight, distance }  = req.body
 
     const workoutId = parseInt(req.params.id, 10);
     
     const userWorkout = await db.Workout.findOne({ where: { workoutId } });
-
-    if( userWorkout.userId !== currentUserId){
-        throw error // put in validation error
+    if(!userWorkout){
+        await userWorkout.build({
+            repetitions,
+            sets,
+            resistance,
+            weight,
+            distance,
+            exerciseId,
+            userId: currentUserId
+        })
+    } else {
+        if(userWorkout.userId !== currentUserId){
+            throw error // put in validation error
+        } else {     
+            userWorkout.update(repetitions, sets, resistance, weight, distance, exerciseId)
+        }
     }
-    userWorkout
-            repetitions
-            sets
-            laps
-            weight
-            distance
-
-
-    res.json({ userWorkout });
-    
+    res.status(203);
 }));
 
 router.delete('/workout/:id', asyncHandler(async (req, res) => {
@@ -85,6 +94,6 @@ router.delete('/workout/:id', asyncHandler(async (req, res) => {
 
     res.status(204);
     
-}));
+}))
 
 module.exports = router

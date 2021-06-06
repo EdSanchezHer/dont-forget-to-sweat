@@ -6,7 +6,7 @@ const { asyncHandler, csrfProtection } = require("./utils");
 const db = require("../db/models");
 
 router.get("/", csrfProtection, (req, res) => {
-	return res.render("gym", {title: "It's sweatin' time!", csrfToken: req.csrfToken});
+	return res.render("gym", {title: "It's sweatin' time!"});
 });
 // get routine by day
 

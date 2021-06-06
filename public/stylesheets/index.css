@@ -4,6 +4,10 @@
 @import "app.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap");
 
+.hidden {
+	display: none;
+}
+
 :root {
 	--main-color: #de5454;
 	--main-light-color: #fa9b9b;
@@ -141,3 +145,4 @@ h1 {
 	padding-bottom: 50px;
 	padding-top: 15px;
 }
+

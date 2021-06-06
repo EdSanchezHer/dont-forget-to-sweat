@@ -4,12 +4,11 @@ const { asyncHandler, csrfProtection } = require('./utils')
 const db = require('../db/models')
 
 
-router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
-		// const currentUserId = res.locals.user.id;
-		const muscleGroup = req.params.muscleGroup 
-		const exerciseList = await db.Exercise.findAll({
-			where: { muscleGroup },
-		});
+// router.get('["/Cardio", "/Legs", "/Arms", "/Core", "/Back", "/Chest"]', asyncHandler(async (req, res) => {
+router.get('/:muscleGroup', asyncHandler(async (req, res) => {
+		const muscleGroup = req.params.muscleGroup
+		console.log("params:  ", muscleGroup)
+		const exerciseList = await db.Exercise.findAll({ where: { muscleGroup } });
 
 		if (!exerciseList) throw error; // put in error validation
 
