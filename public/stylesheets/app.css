@@ -7,8 +7,8 @@
 	/* height: 100vh; */
 	grid-template-areas:
 		"nav nav nav"
-		"sidebar quotes description"
-		"sidebar workouts description"
+		"sidebar workouts quotes"
+		"sidebar workoutList description"
     "sidebar workoutList description";
 }
 
