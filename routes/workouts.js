@@ -32,8 +32,9 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', csrfProtection, asyncHandler(async (req, res) => {
-    const currentUserId = res.locals.user.id;
+router.post('/', asyncHandler(async (req, res) => {
+    console.log(req.body);
+    // const currentUserId = res.locals.user.id;
     const { exerciseId, weight, resistance, repetitions, sets, distance } = req.body
     
     const workout = db.Workout.build({
@@ -43,12 +44,12 @@ router.post('/', csrfProtection, asyncHandler(async (req, res) => {
         repetitions,
         sets,
         distance,
-        userId: currentUserId
+        // userId: currentUserId
     })
     // insert validations and error checking
 
     await workout.save()
-    res.status(203)
+    res.json({ workout });
 
 }))
 

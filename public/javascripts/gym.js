@@ -29,36 +29,36 @@ async function getMuscleGroup() {
 					dropDownTwo.appendChild(newEle);
 				}
 			});
-		return listOfObjects;
-	} else {
-		workoutForm.classList.add("hidden");
-	}
-}
-const checkType = (type) => {
-  if (type === "Power-lift") {
-    return ["weight", "repetitions", "sets"];
-  } else if (type === "Machine") {
-    return ["resistance", "repetitions", "sets"];
-  } else if (type === "Calesthenics") {
-    return ["resistance", "repetitions", "sets"];
-  } else if (type === "Cardio") {
-    return ["distance", "resistance"];
+      return listOfObjects;
+    } else {
+      workoutForm.classList.add("hidden");
+    }
   }
-};
-
-async function unhide() {
-	const dropDownTwo = document.getElementById("chosen-exercise");
-	const exType = dropDownTwo.exerciseType;
-	// const boxes = await document.querySelectorAll(".workout__input")
+  const checkType = (type) => {
+    if (type === "Power-lift") {
+      return ["weight", "repetitions", "sets"];
+    } else if (type === "Machine") {
+      return ["resistance", "repetitions", "sets"];
+    } else if (type === "Calesthenics") {
+      return ["resistance", "repetitions", "sets"];
+    } else if (type === "Cardio") {
+      return ["distance", "resistance"];
+    }
+  };
+  
+  async function unhide() {
+    const dropDownTwo = document.getElementById("chosen-exercise");
+    const exType = dropDownTwo.exerciseType;
+    // const boxes = await document.querySelectorAll(".workout__input")
 	//   boxes.forEach((ele) => ele.setAttribute("disabled", "true"));
 
-	const middleList = checkType(exType);
-	middleList.forEach((eles) => {
-		const htmlElement = document
-			.getElementById(eles)
-			.then(() => htmlElement.setAttribute("disabled", "false"));
-	});
-	return middleList;
+// 	const middleList = checkType(exType);
+// 	middleList.forEach((eles) => {
+// 		const htmlElement = document
+// 			.getElementById(eles)
+// 			.then(() => htmlElement.setAttribute("disabled", "false"));
+// 	});
+// 	return middleList;
 }
 
 // Quotes
@@ -90,15 +90,20 @@ const buttonSelect = document.querySelectorAll("button.form-button")
 const formSelect = document.getElementById("workout-form")
 
 formSelect.addEventListener("submit", async (event) => {
-  event.preventDefault
+  event.preventDefault();
   const dropDownTwo = document.getElementById("chosen-exercise");
-  const { exerciseId, exerciseTitle } = dropDownTwo;
-  const workoutObj = {
-    exerciseId,
-    exerciseTitle
-  }
-  const workoutInputs = document.querySelectorAll("workout__inputs")
-  const 
+  const weightInput = document.getElementById("weight").value;
+  const repititionsInput = document.getElementById("repititions").value;
+  const setsInput = document.getElementById("sets").value;
+  const resistanceInput = document.getElementById("resistance").value;
+  const distanceInput = document.getElementById("distance").value;
+  const exerciseTitle = dropDownTwo.value;
+  console.log(exerciseTitle);
+  // const workoutObj = {
+  //   exerciseTitle
+  // }
+  // const workoutInputs = document.querySelectorAll("workout__inputs")
+  // const 
 
 
 
