@@ -1,13 +1,23 @@
 const express = require("express");
 const { requireAuth } = require("../auth");
 const router = express.Router();
-// const { requireAuth } = require("../auth")
 const { asyncHandler, csrfProtection } = require("./utils");
 const db = require("../db/models");
+// const workout = require("../db/models/workout");
 
-router.get("/", csrfProtection, (req, res) => {
-	return res.render("gym", {title: "It's sweatin' time!"});
-});
+router.get("/", requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
+	// const currentUserId = req.user
+	console.log("request-user: ", req.user)
+	// const tempRoutine = await db.Routine.findOne({ 
+	// 	where: { tag: "TEMP" },
+	// 	include: {
+	// 		model: db.Workout,
+	// 		include: db.Workout_Routine
+	// 	}
+	// })	
+
+	return res.render("gym", {title: "It's sweatin' time!", csrfToken: req.csrfToken()});
+}))
 // get routine by day
 
 // router.get(
@@ -26,4 +36,6 @@ router.get("/", csrfProtection, (req, res) => {
 // );
 
 router.post("/users/logout", (req, res) => {});
+
+
 module.exports = router;

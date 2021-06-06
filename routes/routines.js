@@ -3,7 +3,8 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require("express-validator");
 const db = require('../db/models')
-
+const { reqAuth } = require('./../auth')
+ 
 // const { User, Routine, Workout }
 
 

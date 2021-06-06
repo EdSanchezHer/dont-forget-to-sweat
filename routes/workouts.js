@@ -48,7 +48,7 @@ router.post('/', csrfProtection, asyncHandler(async (req, res) => {
     // insert validations and error checking
 
     await workout.save()
-    res.status(203)
+    res.json({ workout })
 
 }))
 

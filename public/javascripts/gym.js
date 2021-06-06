@@ -86,24 +86,24 @@ loadQuote();
 
 // Description
 
-const buttonSelect = document.querySelectorAll("button.form-button")
-const formSelect = document.getElementById("workout-form")
+// const buttonSelect = document.querySelectorAll("button.form-button")
+// const formSelect = document.getElementById("workout-form")
 
-formSelect.addEventListener("submit", async (event) => {
-  event.preventDefault
-  const dropDownTwo = document.getElementById("chosen-exercise");
-  const { exerciseId, exerciseTitle } = dropDownTwo;
-  const workoutObj = {
-    exerciseId,
-    exerciseTitle
-  }
-  const workoutInputs = document.querySelectorAll("workout__inputs")
-  const 
-
-
+// formSelect.addEventListener("submit", async (event) => {
+//   event.preventDefault
+//   const dropDownTwo = document.getElementById("chosen-exercise");
+//   const { exerciseId, exerciseTitle } = dropDownTwo;
+//   const workoutObj = {
+//     exerciseId,
+//     exerciseTitle
+//   }
+//   const workoutInputs = document.querySelectorAll("workout__inputs")
+//   const 
 
 
-})
+
+
+// })
 
 
 // console.log(JSON.stringify(inputs))
