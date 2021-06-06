@@ -40,9 +40,9 @@ class NewQuote {
         }
 
     }
-    formatLongQuote(quoteObj) {
-        const author = quoteObj.author;
-        const quote = quoteObj.quote
+    formatLongQuote() {
+        const author = this.author;
+        const quote = this.quote
 
         if (author === null) quoteObj.author = "Anonymous"
 

@@ -14,10 +14,9 @@ const workoutRouter = require('./routes/workouts')
 const routineRouter = require('./routes/routines')
 const { restoreUser } = require('./auth');
 // const port = require('port')
-const exerciseRouter = require('./routes/exercises')
-
-
-// const bcrypt = require('bcryptj');
+const exerciseRouter = require('./routes/exercises');
+const quoteRouter = require('./routes/quotes');
+// const bcrypt = require('bcryptjs');
 const app = express();
 
 // view engine setup
@@ -53,7 +52,8 @@ app.use('/users', userRouter);
 app.use('/workouts', workoutRouter)
 app.use('/routines', routineRouter);
 app.use('/gym', gymRouter);
-app.use('/exercises', exerciseRouter)
+app.use('/exercises', exerciseRouter);
+app.use('/quotes', quoteRouter);
 app.use(restoreUser);
 
 // catch 404 and forward to error handler
