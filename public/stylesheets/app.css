@@ -1,18 +1,23 @@
 .main-app {
 	display: grid;
+	/* background-color: #fa9b9b66; */
 	grid-template-columns: 20% 1fr 1fr;
-	grid-template-rows: 10% 25% 1fr;
-	width: 100vw;
-	height: 100vh;
+	grid-template-rows: 50px auto 1fr;
+	/* width: 100vw; */
+	/* height: 100vh; */
 	grid-template-areas:
 		"nav nav nav"
 		"sidebar quotes description"
 		"sidebar workouts description";
 }
 
+/* html {
+	height: 100%;
+} */
+
 .sidebar {
 	grid-area: sidebar;
-	background-color: aqua;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .app_navbar {
@@ -22,19 +27,45 @@
 
 .quotes {
 	grid-area: quotes;
-	background-color: red;
 }
 
 .description {
 	grid-area: description;
-	background-color: green;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .workouts {
 	grid-area: workouts;
-	background-color: yellow;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.logo-nav {
+	width: 50px;
+	margin: 5px;
 }
 
 .hidden {
 	visibility: hidden;
+}
+
+.shadow {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+	transition: box-shadow 0.2s ease-out;
+}
+
+.shadow:hover {
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gym-form-border {
+	border-radius: 5px;
+	background-color: #f3d1d1de;
+	padding: 20px;
+	margin: 10px;
+}
+
+.italic {
+	font-style: italic;
 }
