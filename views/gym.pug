@@ -7,36 +7,43 @@ append head
 
 block content
   div.main-app
-    div.app_navbar Nav
-    div.sidebar Sidebar
+    div.app_navbar.shadow
+      a(href="/gym") 
+        img.logo-nav(src="/images/sweat-logo.png")
+    div.sidebar
+      ul  
+        li Test
+        li Test
+        li Test
     //- M-S 
     //- Click on a day
     //- Get routines/day
     //- Display async info
     div.quotes
-      p#quote
-      button#new-quote New Quote
+      div.gym-form-border.shadow
+        p#quote
+        button#new-quote.form-button New Quote
     div.workouts
-      div.workouts-add__container
+      div.gym-form-border.shadow
         label(for="muscle-group") Choose a muscle group:
         select( id="muscle-selection" name="muscle-group" value=muscleGroup)
-            option#muscle-select() ---Please select one---
-            option(value="Arms") Arms 
-            option(value="Chest") Chest 
-            option(value="Legs") Legs 
-            option(value="Back") Back 
-            option(value="Core") Core 
-            option(value="Cardio") Cardio      
+          option#muscle-select() ---Please select one---
+          option(value="Arms") Arms 
+          option(value="Chest") Chest 
+          option(value="Legs") Legs 
+          option(value="Back") Back 
+          option(value="Core") Core 
+          option(value="Cardio") Cardio
         form(action="/workouts" method="post" id="workout-form" class="hidden")
-            input(type="hidden" name="_csrf" value=csrfToken)
-            label(for="chosen-exercise") Choose a exercise:
-            select(onchange="unhide()" name="chosen-exercise" id="chosen-exercise" value=excercise)
-            +makeInputs("weight", "Weight", weight, "power-lift")     
-            +makeInputs("repetitions", "Repetitions", repetitions, 'machine power-lift calisthenics')     
-            +makeInputs("sets", "Sets", sets, 'power-lift calisthenics machine')     
-            +makeInputs("resistance", "Resistance", resistance, 'machine calisthenics cardio')     
-            +makeInputs("distance", "Distance", distance, 'cardio')
-            button.form-button(type="submit") Add Workout   
+          input(type="hidden" name="_csrf" value=csrfToken)
+          label(for="chosen-exercise") Choose a exercise:
+          select(onchange="unhide()" name="chosen-exercise" id="chosen-exercise" value=exercise)
+          +makeInputs("weight", "Weight", weight, "power-lift")     
+          +makeInputs("repetitions", "Repetitions", repetitions, 'machine power-lift calisthenics')     
+          +makeInputs("sets", "Sets", sets, 'power-lift calisthenics machine')     
+          +makeInputs("resistance", "Resistance", resistance, 'machine calisthenics cardio')     
+          +makeInputs("distance", "Distance", distance, 'cardio')
+          button.form-button(type="submit") Add Workout     
       div.workouts-list__container
         div.workouts-list__items
     div.description Description

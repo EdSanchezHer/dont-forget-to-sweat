@@ -12,4 +12,4 @@ mixin field(fieldName, fieldValue, fieldType='text', placeholder)
 
 mixin makeInputs(name, label, val, clas)
   label(for=name id=name class="workout__label") #{label}
-  input(type="number" name=name id=name value=val class=`workout__input ${name} ${clas}`)
+  input.form-field(type="number" name=name id=name value=val class=`workout__input ${name} ${clas}`)

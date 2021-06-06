@@ -69,9 +69,11 @@ async function loadQuote() {
 	const res = await fetch("/quotes");
 	const newQ = await res.json();
 
+	if (!newQ.author) newQ.author = "Unknown";
+
 	console.log(newQ.author);
 
-	quoteContainer.innerHTML = newQ.quote;
+	quoteContainer.innerHTML = `<p class="italic">"${newQ.quote}"</p>- ${newQ.author}`;
 }
 
 const quoteButton = document.getElementById("new-quote");
