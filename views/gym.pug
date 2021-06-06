@@ -11,15 +11,15 @@ block content
       a(href="/gym") 
         img.logo-nav(src="/images/sweat-logo.png")
     div.sidebar
-      div#days
-        ul  
-          a(href="/routes/monday")  Monday
-          a(href="/routes/tuesday")  Tuesday
-          a(href="/routes/wednesday")  Wednesday 
-          a(href="/routes/thursday")  Thursday 
-          a(href="/routes/friday")  Friday
-          a(href="/routes/saturday")  Saturday 
-          a(href="/routes/sunday")  Sunday
+      div#days 
+        p.form-title-gym Routines
+        a.day-link(href="/routes/monday")  Monday
+        a.day-link(href="/routes/tuesday")  Tuesday
+        a.day-link(href="/routes/wednesday")  Wednesday 
+        a.day-link(href="/routes/thursday")  Thursday 
+        a.day-link(href="/routes/friday")  Friday
+        a.day-link(href="/routes/saturday")  Saturday 
+        a.day-link(href="/routes/sunday")  Sunday
     //- M-S 
     //- Click on a day
     //- Get routines/day
@@ -30,9 +30,9 @@ block content
         button#new-quote.form-button New Quote
     div.workouts
       div.gym-form-border.shadow
-        label(for="muscle-group") Choose a muscle group:
+        p.form-title-gym Add a workout
         select( id="muscle-selection" name="muscle-group" value=muscleGroup)
-          option#muscle-select() ---Please select one---
+          option#muscle-select() Select a muscle group to get started
           option(value="Arms") Arms 
           option(value="Chest") Chest 
           option(value="Legs") Legs 
