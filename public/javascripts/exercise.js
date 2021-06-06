@@ -28,6 +28,17 @@ async function getMuscleGroup() {
 		});
 	return listOfObjects;
 }
+const checkType = (type) => {
+  if (type === "Power-lift") {
+    return ["weight", "repetitions", "sets"];
+  } else if (type === "Machine") {
+    return ["resistance", "repetitions", "sets"];
+  } else if (type === "Calesthenics") {
+    return ["resistance", "repetitions", "sets"];
+  } else if (type === "Cardio") {
+    return ["distance", "resistance"];
+  }
+};
 
 async function unhide() {
 	const dropDownTwo = document.getElementById("chosen-exercise");
@@ -35,17 +46,6 @@ async function unhide() {
 	// const boxes = await document.querySelectorAll(".workout__input")
 	//   boxes.forEach((ele) => ele.setAttribute("disabled", "true"));
 
-	const checkType = (type) => {
-		if (type === "Power-lift") {
-			return ["weight", "repetitions", "sets"];
-		} else if (type === "Machine") {
-			return ["resistance", "repetitions", "sets"];
-		} else if (type === "Calesthenics") {
-			return ["resistance", "repetitions", "sets"];
-		} else if (type === "Cardio") {
-			return ["distance", "resistance"];
-		}
-	};
 	const middleList = checkType(exType);
 	middleList.forEach((eles) => {
 		const htmlElement = document
@@ -56,6 +56,26 @@ async function unhide() {
 }
 
 muscleSelect.addEventListener("change", getMuscleGroup);
+
+const buttonSelect = document.querySelectorAll("button.form-button")
+const formSelect = document.getElementById("workout-form")
+
+formSelect.addEventListener("submit", async (event) => {
+  event.preventDefault
+  const dropDownTwo = document.getElementById("chosen-exercise");
+  const { exerciseId, exerciseTitle } = dropDownTwo;
+  const workoutObj = {
+    exerciseId,
+    exerciseTitle
+  }
+  const workoutInputs = document.querySelectorAll("workout__inputs")
+  const 
+
+
+
+
+})
+
 
 // console.log(JSON.stringify(inputs))
 
