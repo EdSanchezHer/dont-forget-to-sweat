@@ -4,7 +4,7 @@ const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require("express-validator");
 const db = require('../db/models')
 
-const { User, Routine, Workout }
+// const { User, Routine, Workout }
 
 
 
@@ -26,7 +26,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 
 // get specific routine
 
-router.get('/routines/:id', csrfProtection, asyncHandler(async (req, res, next) => {
+router.get('/:id', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
     const routineId = parseInt(req.params.id, 10);
 
@@ -42,12 +42,10 @@ router.get('/routines/:id', csrfProtection, asyncHandler(async (req, res, next) 
     res.json({ RoutineWorkouts })    
 }))
 
-// get routine by tag
 
 
 
-
-router.post('/routine/create', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/create', csrfProtection, asyncHandler(async (req, res, next) => {
     const currentUserId = res.locals.user.id;
     const { } = req.body.data //wrong variable
     const newRoutine = await db.Routine.build({
@@ -59,16 +57,36 @@ router.post('/routine/create', csrfProtection, asyncHandler(async (req, res, nex
     })
     
     if ( !newRoutine ) throw error // input error validations
-
+    
     await newRoutine.save();
     
     res.status(203)
-
+    
 }))
 
-router.put('/routine/:id(\\d+)', csrfProtection, asyncHandler( async (req, res, next) => {
+// get routine by tag
+router.get(
+    "/(\\d+day)",
+	csrfProtection,
+	asyncHandler(async (req, res) => {
+        const currentUserId = res.local.user.id;
+		const { tag } = req.params.tag;
+		console.log(req.params);
+		const targetRoutine = await db.Routine.findAll({
+            where: { tag, userId: currentUserId },
+		});
+        
+		if (!targetRoutine) throw error; // add in error validation
+
+		res.json({ targetRoutine });
+	})
+);
+
+router.put('/:id(\\d+)', csrfProtection, asyncHandler( async (req, res, next) => {
     const currentUserId = res.locals.user.id;
     const routineId = parseInt(req.params.id)
 }))
 
-router.delete('/routine/:id')
+router.delete('/:id')
+
+module.exports = router

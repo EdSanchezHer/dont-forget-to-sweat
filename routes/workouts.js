@@ -86,3 +86,5 @@ router.delete('/workout/:id', asyncHandler(async (req, res) => {
     res.status(204);
     
 }));
+
+module.exports = router

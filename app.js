@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+// const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -7,11 +7,15 @@ const { sequelize } = require('./db/models');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
-const appRouter = require('./routes/app-router');
-const usersRouter = require('./routes/users');
+// const appRouter = require('./routes/app-router');
+const userRouter = require('./routes/users');
 const gymRouter = require('./routes/landing');
-const router = require('./routes/users');
+const workoutRouter = require('./routes/workouts')
+const routineRouter = require('./routes/routines')
 const { restoreUser } = require('./auth');
+// const port = require('port')
+const exerciseRouter = require('./routes/exercises')
+
 
 // const bcrypt = require('bcryptj');
 const app = express();
@@ -41,18 +45,21 @@ app.use(
 
 // create Session table if it doesn't already exist
 store.sync();
+// app.use('/demo', demoRouter);
+// store.sync()
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-// app.use('/demo', demoRouter);
-// app.use('/routines', routinesRouter);
-// store.sync()
+app.use('/users', userRouter);
+app.use('/workouts', workoutRouter)
+app.use('/routines', routineRouter);
+app.use('/gym', gymRouter);
+app.use('/exercises', exerciseRouter)
 app.use(restoreUser);
-app.use(gymRouter);
+
 // catch 404 and forward to error handler
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -64,5 +71,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;

@@ -5,42 +5,25 @@ const router = express.Router();
 const { asyncHandler, csrfProtection } = require("./utils");
 const db = require("../db/models");
 
-router.get("/app", requireAuth, (req, res) => {
-	res.render("app");
+router.get("/", csrfProtection, (req, res) => {
+	return res.render("gym", {title: "It's sweatin' time!", csrfToken: req.csrfToken});
 });
 // get routine by day
 
-router.get(
-	"/routine/(\\d+day)",
-	csrfProtection,
-	asyncHandler(async (req, res) => {
-		const currentUserId = res.local.user.id;
-		const { tag } = req.params;
-		console.log(req.params);
-		const targetRoutine = await db.Routine.findAll({
-			where: { tag, userId: currentUserId },
-		});
+// router.get(
+// 	"/exercises:,
+// 	asyncHandler(async (req, res) => {
+// 		// const { muscleGroup } = req.body;
 
-		if (!targetRoutine) throw error; // add in error validation
+// 		const exerciseList = await db.Exercise.findAll({
+// 			// where: { muscleGroup },
+// 		});
 
-		res.json({ targetRoutine });
-	})
-);
+// 		if (!exerciseList) throw error; // put in error validation
 
-router.get(
-	"/exercises",
-	asyncHandler(async (req, res) => {
-		const { muscleGroup } = req.body;
-
-		const exerciseList = await db.Exercise.findAll({
-			where: { muscleGroup },
-		});
-
-		if (!exerciseList) throw error; // put in error validation
-
-		res.json({ exerciseList });
-	})
-);
+// 		res.json({ exerciseList });
+// 	})
+// );
 
 router.post("/users/logout", (req, res) => {});
 module.exports = router;
