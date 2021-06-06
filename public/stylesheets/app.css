@@ -8,12 +8,17 @@
 	grid-template-areas:
 		"nav nav nav"
 		"sidebar quotes description"
-		"sidebar workouts description";
+		"sidebar workouts description"
+    "sidebar workoutList description";
 }
 
 /* html {
 	height: 100%;
 } */
+
+.workoutList {
+  grid-area: workoutList;
+}
 
 .sidebar {
 	grid-area: sidebar;
