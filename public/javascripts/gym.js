@@ -1,39 +1,48 @@
 // WorkOut Form
 const muscleSelect = document.getElementById("muscle-selection");
 muscleSelect.addEventListener("change", getMuscleGroup);
+let ids = {}
+
 
 async function getMuscleGroup() {
-	const workoutForm = document.getElementById("workout-form");
-	const dropDownTwo = document.getElementById("chosen-exercise");
-	const dropDownOne = document.getElementById("muscle-selection");
+  const workoutForm = document.getElementById("workout-form");
+  const dropDownTwo = document.getElementById("chosen-exercise");
+  const dropDownOne = document.getElementById("muscle-selection");
 
-	if (dropDownOne.value !== "---Please select one---") {
-		workoutForm.classList.remove("hidden");
-
-		const listOfObjects = await fetch(`/exercises/${dropDownOne.value}`)
-			.then((res) => res.json())
-			// .then(jsonList => console.log('jsonObjec: ', jsonList))
-			// .then(obj => {
-			//   const myList = obj.exerciseList.map()
-			//   return myList
-			// })
-			.then((objList) => {
-				dropDownTwo.innerHTML = "";
-				for (const exercise of objList.exerciseList) {
-					const newEle = document.createElement("option");
-					newEle.setAttribute("value", exercise.exerciseTitle);
-					newEle.setAttribute("muscle", exercise.muscleName);
-					newEle.setAttribute("exerciseType", exercise.exerciseType);
-					newEle.setAttribute("exerciseId", exercise.id);
-					newEle.innerHTML = `${exercise.exerciseTitle} -- ${exercise.muscleName}`;
-					dropDownTwo.appendChild(newEle);
-				}
-			});
-		return listOfObjects;
-	} else {
-		workoutForm.classList.add("hidden");
-	}
+  if (dropDownOne.value !== "---Please select one---") {
+    workoutForm.classList.remove("hidden");
+    const listOfObjects = await fetch(`/exercises/${dropDownOne.value}`)
+      .then((res) => res.json())
+      // .then(jsonList => console.log('jsonObjec: ', jsonList))
+      // .then(obj => {
+      //   const myList = obj.exerciseList.map()
+      //   return myList
+      // })
+      .then((objList) => {
+        dropDownTwo.innerHTML = "";
+		ids = new Object()
+        for (const exercise of objList.exerciseList) {
+          const newEle = document.createElement("option");
+          newEle.classList.add('ex-select')
+          newEle.setAttribute('id', exercise.exerciseTitle)
+          newEle.setAttribute("value", exercise.exerciseTitle);
+          newEle.setAttribute("muscle", exercise.muscleName);
+          newEle.setAttribute("exerciseType", exercise.exerciseType);
+          newEle.setAttribute("numbah", exercise.id);
+          newEle.innerHTML = `${exercise.exerciseTitle} -- ${exercise.muscleName}`;
+          dropDownTwo.appendChild(newEle);
+		  ids[exercise.exerciseTitle] = exercise.id
+          
+        }
+      });
+	  console.log(ids)
+    return listOfObjects;
+  } else {
+    workoutForm.classList.add("hidden");
+  }
 }
+
+
 const checkType = (type) => {
   if (type === "Power-lift") {
     return ["weight", "repetitions", "sets"];
@@ -45,33 +54,39 @@ const checkType = (type) => {
     return ["distance", "resistance"];
   }
 };
-
+let holder;
 async function unhide() {
-	const dropDownTwo = document.getElementById("chosen-exercise");
-	const exType = dropDownTwo.exerciseType;
-	// const boxes = await document.querySelectorAll(".workout__input")
-	//   boxes.forEach((ele) => ele.setAttribute("disabled", "true"));
+  const dropDownTwo = document.getElementById("chosen-exercise");
+  // const targetOption = dropDownTwo.selected.numbah;
+  console.log(targetOption)
+  return holder = targetOption;
+  // const exType = dropDownTwo.exerciseType;
 
-	const middleList = checkType(exType);
-	middleList.forEach((eles) => {
-		const htmlElement = document
-			.getElementById(eles)
-			.then(() => htmlElement.setAttribute("disabled", "false"));
-	});
-	return middleList;
+  // const boxes = await document.querySelectorAll(".workout__input")
+  //   boxes.forEach((ele) => ele.setAttribute("disabled", "true"));
+
+  // 	const middleList = checkType(exType);
+  // 	middleList.forEach((eles) => {
+  // 		const htmlElement = document
+  // 			.getElementById(eles)
+  // 			.then(() => htmlElement.setAttribute("disabled", "false"));
+  // 	});
+  // 	return middleList;
 }
 
 // Quotes
 
 async function loadQuote() {
-	const quoteContainer = document.getElementById("quote");
+  const quoteContainer = document.getElementById("quote");
 
-	const res = await fetch("/quotes");
-	const newQ = await res.json();
+  const res = await fetch("/quotes");
+  const newQ = await res.json();
 
-	console.log(newQ.author);
+  if (!newQ.author) newQ.author = "Unknown";
 
-	quoteContainer.innerHTML = newQ.quote;
+  console.log(newQ.author);
+
+  quoteContainer.innerHTML = `<p class="italic">"${newQ.quote}"</p>- ${newQ.author}`;
 }
 
 const quoteButton = document.getElementById("new-quote");
@@ -86,24 +101,38 @@ loadQuote();
 
 // Description
 
-// const buttonSelect = document.querySelectorAll("button.form-button")
-// const formSelect = document.getElementById("workout-form")
+// const buttonSelect = document.querySelectorAll("button.form-button");
+// const formSelect = document.getElementById("workout-form");
 
 // formSelect.addEventListener("submit", async (event) => {
-//   event.preventDefault
+  
 //   const dropDownTwo = document.getElementById("chosen-exercise");
-//   const { exerciseId, exerciseTitle } = dropDownTwo;
-//   const workoutObj = {
-//     exerciseId,
-//     exerciseTitle
-//   }
-//   const workoutInputs = document.querySelectorAll("workout__inputs")
-//   const 
+//   const weightInput = document.getElementById("weight").value;
+//   const repititionsInput = document.getElementById("repititions").value;
+//   const setsInput = document.getElementById("sets").value;
+//   const resistanceInput = document.getElementById("resistance").value;
+//   const distanceInput = document.getElementById("distance").value;
+//   const exerciseTitle = ids[dropDownTwo.value]
+//   console.log(exerciseTitle);
 
-
-
+  
+  // const workoutObj = {
+  //   exerciseTitle
+  // }
+  // const workoutInputs = document.querySelectorAll("workout__inputs")
+  // const
 
 // })
+const dropDownTwo = document.getElementById("chosen-exercise");
+
+dropDownTwo.addEventListener('change', (eve) => {
+  const path = document.getElementById("workout-form")
+  const exId = document.getElementById(dropDownTwo.value)
+  console.log("exID: ",  exId)
+  const result = exId.getAttribute('numbah')
+  console.log('numbah: ', result)
+  path.setAttribute('action', `/workouts/exid/${result}`)
+})
 
 
 // console.log(JSON.stringify(inputs))

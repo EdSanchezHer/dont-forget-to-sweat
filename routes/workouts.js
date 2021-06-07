@@ -3,7 +3,14 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
-const workout = require('../db/models/workout');
+const { requireAuth } = require('./../auth')
+
+// router.param( async function('getexercise') {
+    
+// })
+
+
+
 
 // get specific workout ( typically for editing / delete )
 
@@ -32,11 +39,14 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    // console.log(req.body);
+    const exerciseId = parseInt(req.params.id)
+    console.log('exerciseId: ', exerciseId)
     const currentUserId = res.locals.user.id;
-    const { exerciseId, weight, resistance, repetitions, sets, distance } = req.body
-    
-    const workout = db.Workout.build({
+    const { weight, resistance, repetitions, sets, distance } = req.body
+    console.log('currentUserId: ', currentUserId)
+    const workout = await db.Workout.build({
         exerciseId,
         weight,
         resistance,
