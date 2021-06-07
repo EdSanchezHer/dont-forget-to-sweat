@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/', csrfProtection, asyncHandler(async (req, res, next) => {
     // console.log(req.body);
     // const exerciseId = parseInt(req.params.id)
     // console.log('exerciseId: ', exerciseId)

@@ -114,7 +114,7 @@ const workoutForm = document.getElementById('workout-form')
 const subButton = document.querySelectorAll('.form-button')
 workoutForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const csrfToken = document.getElementsByName('_csrf').value
+  const csrfToken = document.querySelector('._csrf').value
   const exId = document.getElementById(dropDownTwo.value)
   const holder = document.getElementById('hidey-hole')
   const exerciseId = exId.getAttribute('numbah')
@@ -124,12 +124,12 @@ workoutForm.addEventListener('submit', async (event) => {
 
   const newWorkout = new FormData(workoutForm);
   await console.log("newWorkout:  ", newWorkout)
-  const request = await fetch('/workouts', {
-    method: "OPTIONS",
+  const res = await fetch('/workouts', {
+    credentials: "include",
+    method: "POST",
     body: newWorkout,
     headers: {
-      'Access-Control-Request-Method': 'POST',
-      'Access-Control-Allow-Origin': "*"
+      "CSRF-Token": csrfToken
     }
   })
   const { workout } = await res.json()

@@ -40,7 +40,7 @@ block content
           option(value="Core") Core 
           option(value="Cardio") Cardio
         form(action="/workouts" method="post" id="workout-form" class="hidden")
-          input(type="hidden" name="_csrf" value=csrfToken)
+          input(type="hidden" name="_csrf" value=csrfToken class="_csrf")
           input(type="hidden" name="exerciseId" id="hidey-hole" class="hidden")
           label(for="chosen-exercise") Choose a exercise:
           select( name="chosen-exercise" id="chosen-exercise" value=exercise)
@@ -51,4 +51,7 @@ block content
           +makeInputs("distance", "Distance", distance, 'cardio')
           button.form-button(type="submit") Add Workout     
     div.workoutList Test
+      //- +makeWorkouts("Barbell Bench Press", 90, 5, 15)
+      //- +makeWorkouts("Cable Crossovers - Mid", 75, 5, 20)
+      //- +makeWorkouts("Dumbell Incline Press", 90, 5, 15)
     div.description Description
