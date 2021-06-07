@@ -59,8 +59,8 @@ router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (
     // insert validations and error checking
 
     await workout.save()
-    res.json({ workout })
-    // res.redirect("/gym", { workout ,})
+    // res.json({ workout })
+    res.redirect("/gym", { workout ,})
 }))
 
 
