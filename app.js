@@ -18,7 +18,7 @@ const exerciseRouter = require('./routes/exercises');
 const quoteRouter = require('./routes/quotes');
 // const bcrypt = require('bcryptjs');
 const app = express();
-
+const cors = require('cors')
 // view engine setup
 app.set('view engine', 'pug');
 
