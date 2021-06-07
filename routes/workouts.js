@@ -4,6 +4,7 @@ const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
 const { requireAuth } = require('./../auth')
+const cors = require("cors")
 
 // router.param( async function('getexercise') {
     

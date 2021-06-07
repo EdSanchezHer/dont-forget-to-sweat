@@ -3,6 +3,7 @@ const { requireAuth } = require("../auth");
 const router = express.Router();
 const { asyncHandler, csrfProtection } = require("./utils");
 const db = require("../db/models");
+const cors = require("cors")
 // const workout = require("../db/models/workout");
 
 router.get("/", requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
