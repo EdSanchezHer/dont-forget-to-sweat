@@ -93,20 +93,60 @@ const formSelect = document.getElementById("workout-form");
 
 formSelect.addEventListener("submit", async (event) => {
 	event.preventDefault();
-	const dropDownTwo = document.getElementById("chosen-exercise");
-	const weightInput = document.getElementById("weight").value;
-	const repititionsInput = document.getElementById("repititions").value;
-	const setsInput = document.getElementById("sets").value;
-	const resistanceInput = document.getElementById("resistance").value;
-	const distanceInput = document.getElementById("distance").value;
-	const exerciseTitle = dropDownTwo.value;
-	console.log(exerciseTitle);
+	const exercise = document.getElementById("chosen-exercise").value;
+	const weight = document.getElementById("weight").value;
+	const repetitions = document.getElementById("repetitions").value;
+	const sets = document.getElementById("sets").value;
+	const resistance = document.getElementById("resistance").value;
+	const distance = document.getElementById("distance").value;
+
+	let id = Math.floor(Math.random() * 1000);
+
+	let body = { id, exercise, weight, repetitions, sets, resistance, distance };
+
+	localStorage.setItem(id, JSON.stringify(body));
+
+	displayWorkouts();
+	// const exerciseTitle = dropDownTwo.value;
+	// console.log(body);
 	// const workoutObj = {
 	//   exerciseTitle
 	// }
 	// const workoutInputs = document.querySelectorAll("workout__inputs")
 	// const
 });
+
+function displayWorkouts() {
+	let workoutList = document.getElementById("list");
+
+	let array = [];
+
+	for (var i = 0; i < localStorage.length; i++) {
+		let el = localStorage.getItem(localStorage.key(i));
+
+		array.push(el);
+	}
+
+	// console.log(array);
+
+	const all = array.map((el) => {
+		let parsed = JSON.parse(el);
+		return `<p class=form-border>Exercise: ${parsed.exercise}<button class=delete-btn onclick=removeWorkout(${parsed.id})>Delete</button></p>
+            <p>Weight: ${parsed.weight}</p>
+            <p>Reps: ${parsed.repetitions}</p>
+            <p>Sets: ${parsed.sets}</p>
+            <p>Resistance: ${parsed.resistance}</p>
+            <p>Distance :${parsed.distance}</p>`;
+	});
+	workoutList.innerHTML = all.join("");
+}
+
+function removeWorkout(id) {
+	localStorage.removeItem(id);
+	displayWorkouts();
+}
+
+displayWorkouts();
 
 // console.log(JSON.stringify(inputs))
 
