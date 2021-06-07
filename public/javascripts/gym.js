@@ -168,7 +168,12 @@ const workoutListElement = document.getElementById("workoutList__list")
 
 const addWorkoutButton = document.querySelector(".form-button")
 
-
+addWorkoutButton.addEventListener("click", addWorkout);
+workoutListElement.addEventListener("keydown", (event) => {
+  if(event.keyCode === 13) {
+    addWorkout();
+  }
+});
 
 
 
