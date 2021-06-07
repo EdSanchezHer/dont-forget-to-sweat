@@ -40,12 +40,12 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/', cors(), requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
     // console.log(req.body);
-    const exerciseId = parseInt(req.params.id)
-    console.log('exerciseId: ', exerciseId)
+    // const exerciseId = parseInt(req.params.id)
+    // console.log('exerciseId: ', exerciseId)
     const currentUserId = res.locals.user.id;
-    const { weight, resistance, repetitions, sets, distance } = req.body
+    const { weight, resistance, repetitions, sets, distance, exerciseId } = req.body
     console.log('currentUserId: ', currentUserId)
     const workout = await db.Workout.build({
         exerciseId,
@@ -59,8 +59,16 @@ router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (
     // insert validations and error checking
 
     await workout.save()
-    // res.json({ workout })
-    res.redirect("/gym", { workout ,})
+    
+    const exerciseTitle = await db.Exercise.findByPk(exerciseId).then(obj => {
+        return workout['exerciseTitle'] = obj.exerciseTitle
+    })
+
+    
+
+    res.status(201).json({ workout })
+
+
 }))
 
 
@@ -91,7 +99,7 @@ router.put('/:id', csrfProtection, asyncHandler(async (req, res) => {
     res.status(203);
 }));
 
-router.delete('/workout/:id', asyncHandler(async (req, res) => {
+router.delete('/:id', asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
     const workoutId = parseInt(req.params.id, 10);
     
