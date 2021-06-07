@@ -86,9 +86,12 @@ loadQuote();
 
 // Navbar
 
-// Description
+// Workout List
+const workoutList = [];
+const workoutListElement = document.getElementById("workoutList__list")
 
-const buttonSelect = document.querySelectorAll("button.form-button");
+const addWorkoutButton = document.querySelector(".form-button")
+
 const formSelect = document.getElementById("workout-form");
 
 formSelect.addEventListener("submit", async (event) => {
