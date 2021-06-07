@@ -131,13 +131,18 @@ function displayWorkouts() {
 
 	const all = array.map((el) => {
 		let parsed = JSON.parse(el);
-		return `<div class="gym-form-border shadow"
-              <p>Exercise: ${parsed.exercise}<button class=delete-btn onclick=removeWorkout(${parsed.id})>Delete</button></p>
-              <p>Weight: ${parsed.weight}</p>
-              <p>Reps: ${parsed.repetitions}</p>
-              <p>Sets: ${parsed.sets}</p>
-              <p>Resistance: ${parsed.resistance}</p>
-              <p>Distance :${parsed.distance}</p>
+		// var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+		return `<div class="gym-form-border shadow">
+              <p class="form-title-gym">
+                ${parsed.exercise}
+              </p>
+              <hr>
+              <p>Weight: <span class=right>${parsed.weight}</p>
+              <p>Reps: <span class=right>${parsed.repetitions}</p>
+              <p>Sets: <span class=right>${parsed.sets}</p>
+              <p>Resistance: <span class=right>${parsed.resistance}</p>
+              <p>Distance :<span class=right>${parsed.distance}</p>
+              <button class=delete-btn onclick=removeWorkout(${parsed.id})>Delete</button>
             </div>`;
 	});
 	workoutList.innerHTML = all.join("");
