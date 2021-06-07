@@ -91,6 +91,7 @@ loadQuote();
 // Description
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const buttonSelect = document.querySelectorAll("button.form-button");
 const formSelect = document.getElementById("workout-form");
 
@@ -111,6 +112,8 @@ formSelect.addEventListener("submit", async (event) => {
 	// const
 });
 =======
+=======
+>>>>>>> 9b887fdb822bdbfaeee2b5568e1b44d4dc2ae601
 // const buttonSelect = document.querySelectorAll("button.form-button");
 // const formSelect = document.getElementById("workout-form");
 
@@ -144,7 +147,10 @@ dropDownTwo.addEventListener('change', (eve) => {
   path.setAttribute('action', `/workouts/exid/${result}`)
 })
 
+<<<<<<< HEAD
 >>>>>>> saturday
+=======
+>>>>>>> 9b887fdb822bdbfaeee2b5568e1b44d4dc2ae601
 
 // console.log(JSON.stringify(inputs))
 
