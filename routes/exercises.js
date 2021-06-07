@@ -7,7 +7,7 @@ const { requireAuth } = require('../auth')
 // router.get('["/Cardio", "/Legs", "/Arms", "/Core", "/Back", "/Chest"]', asyncHandler(async (req, res) => {
 router.get('/:muscleGroup', requireAuth, asyncHandler(async (req, res) => {
 		const muscleGroup = req.params.muscleGroup
-		console.log("params:  ", muscleGroup)
+		// console.log("params:  ", muscleGroup)
 		const exerciseList = await db.Exercise.findAll({ where: { muscleGroup } });
 
 		if (!exerciseList) throw error; // put in error validation

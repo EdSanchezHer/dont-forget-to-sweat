@@ -4,7 +4,7 @@ const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
 const { requireAuth } = require('./../auth')
-const cors = require("cors")
+// const cors = require("cors")
 
 // router.param( async function('getexercise') {
     
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', cors(), requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
     // console.log(req.body);
     // const exerciseId = parseInt(req.params.id)
     // console.log('exerciseId: ', exerciseId)

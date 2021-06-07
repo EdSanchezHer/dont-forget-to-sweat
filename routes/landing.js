@@ -3,12 +3,12 @@ const { requireAuth } = require("../auth");
 const router = express.Router();
 const { asyncHandler, csrfProtection } = require("./utils");
 const db = require("../db/models");
-const cors = require("cors")
+// const cors = require("cors")
 // const workout = require("../db/models/workout");
 
 router.get("/", requireAuth, csrfProtection, asyncHandler( async (req, res, next) => {
 	// const currentUserId = req.user
-	console.log("request-user: ", req.user)
+	// console.log("request-user: ", req.user)
 	// const tempRoutine = await db.Routine.findOne({ 
 	// 	where: { tag: "TEMP" },
 	// 	include: {

@@ -1,3 +1,6 @@
+// const cors = require('cors')
+
+
 // WorkOut Form
 const muscleSelect = document.getElementById("muscle-selection");
 muscleSelect.addEventListener("change", getMuscleGroup);
@@ -102,10 +105,10 @@ async function addWorkoutToRoutine(obj){
 }
 const workoutForm = document.getElementById('workout-form')
 
-function makeNewWorkout(){
-  const newWorkout = new FormData(workoutForm)
+// function makeNewWorkout(){
+//   const newWorkout = new FormData(workoutForm)
   
-}
+// }
 
 
 const subButton = document.querySelectorAll('.form-button')
@@ -120,12 +123,14 @@ workoutForm.addEventListener('submit', async (event) => {
   //gather form values
 
   const newWorkout = new FormData(workoutForm);
-  
+  await console.log("newWorkout:  ", newWorkout)
   const request = await fetch('/workouts', {
-    // credentials: include,
-    method: 'POST',
+    method: "OPTIONS",
     body: newWorkout,
-    headers: { 'CSRF-Token': csrfToken }
+    headers: {
+      'Access-Control-Request-Method': 'POST',
+      'Access-Control-Allow-Origin': "*"
+    }
   })
   const { workout } = await res.json()
   console.log(workout);  
