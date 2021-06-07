@@ -106,6 +106,9 @@ formSelect.addEventListener("submit", async (event) => {
 
 	localStorage.setItem(id, JSON.stringify(body));
 
+	document.getElementById("muscle-selection").selectedIndex = 0;
+	document.getElementById("workout-form").classList.add("hidden");
+
 	displayWorkouts();
 	// const exerciseTitle = dropDownTwo.value;
 	// console.log(body);
