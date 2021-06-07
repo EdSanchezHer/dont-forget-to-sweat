@@ -41,8 +41,9 @@ block content
           option(value="Cardio") Cardio
         form(action="/workouts" method="post" id="workout-form" class="hidden")
           input(type="hidden" name="_csrf" value=csrfToken)
+          input(type="hidden" name="exerciseId" id="hidey-hole" class="hidden")
           label(for="chosen-exercise") Choose a exercise:
-          select(onchange="unhide()" name="chosen-exercise" id="chosen-exercise" value=exercise)
+          select( name="chosen-exercise" id="chosen-exercise" value=exercise)
           +makeInputs("weight", "Weight", weight, "power-lift")     
           +makeInputs("repetitions", "Repetitions", repetitions, 'machine power-lift calisthenics')     
           +makeInputs("sets", "Sets", sets, 'power-lift calisthenics machine')     

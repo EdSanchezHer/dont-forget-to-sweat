@@ -3,7 +3,8 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require("express-validator");
 const db = require('../db/models')
-
+const { reqAuth } = require('./../auth')
+ 
 // const { User, Routine, Workout }
 
 
@@ -82,11 +83,11 @@ router.get(
 	})
 );
 
-router.put('/:id(\\d+)', csrfProtection, asyncHandler( async (req, res, next) => {
-    const currentUserId = res.locals.user.id;
-    const routineId = parseInt(req.params.id)
-}))
+// router.put('/:id(\\d+)', csrfProtection, asyncHandler( async (req, res, next) => {
+//     const currentUserId = res.locals.user.id;
+//     const routineId = parseInt(req.params.id)
+// }))
 
-router.delete('/:id')
+// router.delete('/:id')
 
 module.exports = router

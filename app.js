@@ -18,12 +18,13 @@ const exerciseRouter = require('./routes/exercises');
 const quoteRouter = require('./routes/quotes');
 // const bcrypt = require('bcryptjs');
 const app = express();
-
+const cors = require('cors')
 // view engine setup
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -44,9 +45,9 @@ app.use(
 
 // create Session table if it doesn't already exist
 store.sync();
-// app.use('/demo', demoRouter);
-// store.sync()
 
+// store.sync()
+app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/workouts', workoutRouter)
@@ -54,7 +55,7 @@ app.use('/routines', routineRouter);
 app.use('/gym', gymRouter);
 app.use('/exercises', exerciseRouter);
 app.use('/quotes', quoteRouter);
-app.use(restoreUser);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

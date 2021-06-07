@@ -3,7 +3,15 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils')
 const { check, validationResult } = require('express-validator');
 const db = require('../db/models');
-const workout = require('../db/models/workout');
+const { requireAuth } = require('./../auth')
+const cors = require("cors")
+
+// router.param( async function('getexercise') {
+    
+// })
+
+
+
 
 // get specific workout ( typically for editing / delete )
 
@@ -17,7 +25,7 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
         throw error // put in validation error
     }
 
-    res.json({ userWorkout });
+    res.status(201).json({ userWorkout });
 
 }));
 
@@ -32,24 +40,34 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/', asyncHandler(async (req, res) => {
-    console.log(req.body);
-    // const currentUserId = res.locals.user.id;
-    const { exerciseId, weight, resistance, repetitions, sets, distance } = req.body
-    
-    const workout = db.Workout.build({
+router.post('/', cors(), requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+    // console.log(req.body);
+    // const exerciseId = parseInt(req.params.id)
+    // console.log('exerciseId: ', exerciseId)
+    const currentUserId = res.locals.user.id;
+    const { weight, resistance, repetitions, sets, distance, exerciseId } = req.body
+    console.log('currentUserId: ', currentUserId)
+    const workout = await db.Workout.build({
         exerciseId,
         weight,
         resistance,
         repetitions,
         sets,
         distance,
-        // userId: currentUserId
+        userId: currentUserId
     })
     // insert validations and error checking
 
     await workout.save()
-    res.json({ workout });
+    
+    const exerciseTitle = await db.Exercise.findByPk(exerciseId).then(obj => {
+        return workout['exerciseTitle'] = obj.exerciseTitle
+    })
+
+    
+
+    res.status(201).json({ workout })
+
 
 }))
 
@@ -81,7 +99,7 @@ router.put('/:id', csrfProtection, asyncHandler(async (req, res) => {
     res.status(203);
 }));
 
-router.delete('/workout/:id', asyncHandler(async (req, res) => {
+router.delete('/:id', asyncHandler(async (req, res) => {
     const currentUserId = res.locals.user.id;
     const workoutId = parseInt(req.params.id, 10);
     

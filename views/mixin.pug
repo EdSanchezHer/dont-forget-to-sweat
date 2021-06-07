@@ -1,4 +1,24 @@
 mixin makeInputs(name, label)
     label(for=name) #{label}
     input(type="number" name=name id=name value=name class="workout__input hidden")
-    
+
+
+mixin makeWorkouts(exerciseTitle, weight, sets, reps, dist, res)
+    div.workoutHolder.hidden
+        div.workoutHolder.topLine 
+            p.title=exerciseTitle  
+            input#(type="checkbox", name="")
+            button.delete
+        div.workoutHolder.bottomLine
+            span.weight=weight #{weight} 
+            span.sets=sets #{sets}
+            span.reps=reps #{reps}
+            span.dist=dist #{dist}
+            span.res=res  #{res}
+
+
+class Workout {
+    choose(value) {
+        this.trigger("click", value)
+    }
+}
