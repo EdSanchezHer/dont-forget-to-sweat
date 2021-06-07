@@ -1,8 +1,7 @@
 // WorkOut Form
 const muscleSelect = document.getElementById("muscle-selection");
 muscleSelect.addEventListener("change", getMuscleGroup);
-let ids = {}
-
+let ids = {};
 
 async function getMuscleGroup() {
 	const workoutForm = document.getElementById("workout-form");
@@ -66,16 +65,16 @@ async function unhide() {
 // Quotes
 
 async function loadQuote() {
-  const quoteContainer = document.getElementById("quote");
+	const quoteContainer = document.getElementById("quote");
 
-  const res = await fetch("/quotes");
-  const newQ = await res.json();
+	const res = await fetch("/quotes");
+	const newQ = await res.json();
 
-  if (!newQ.author) newQ.author = "Unknown";
+	if (!newQ.author) newQ.author = "Unknown";
 
-  console.log(newQ.author);
+	console.log(newQ.author);
 
-  quoteContainer.innerHTML = `<p class="italic">"${newQ.quote}"</p>- ${newQ.author}`;
+	quoteContainer.innerHTML = `<p class="italic">"${newQ.quote}"</p>- ${newQ.author}`;
 }
 
 const quoteButton = document.getElementById("new-quote");
@@ -90,8 +89,6 @@ loadQuote();
 
 // Description
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 const buttonSelect = document.querySelectorAll("button.form-button");
 const formSelect = document.getElementById("workout-form");
 
@@ -111,14 +108,12 @@ formSelect.addEventListener("submit", async (event) => {
 	// const workoutInputs = document.querySelectorAll("workout__inputs")
 	// const
 });
-=======
-=======
->>>>>>> 9b887fdb822bdbfaeee2b5568e1b44d4dc2ae601
+
 // const buttonSelect = document.querySelectorAll("button.form-button");
 // const formSelect = document.getElementById("workout-form");
 
 // formSelect.addEventListener("submit", async (event) => {
-  
+
 //   const dropDownTwo = document.getElementById("chosen-exercise");
 //   const weightInput = document.getElementById("weight").value;
 //   const repititionsInput = document.getElementById("repititions").value;
@@ -128,29 +123,23 @@ formSelect.addEventListener("submit", async (event) => {
 //   const exerciseTitle = ids[dropDownTwo.value]
 //   console.log(exerciseTitle);
 
-  
-  // const workoutObj = {
-  //   exerciseTitle
-  // }
-  // const workoutInputs = document.querySelectorAll("workout__inputs")
-  // const
+// const workoutObj = {
+//   exerciseTitle
+// }
+// const workoutInputs = document.querySelectorAll("workout__inputs")
+// const
 
 // })
 const dropDownTwo = document.getElementById("chosen-exercise");
 
-dropDownTwo.addEventListener('change', (eve) => {
-  const path = document.getElementById("workout-form")
-  const exId = document.getElementById(dropDownTwo.value)
-  console.log("exID: ",  exId)
-  const result = exId.getAttribute('numbah')
-  console.log('numbah: ', result)
-  path.setAttribute('action', `/workouts/exid/${result}`)
-})
-
-<<<<<<< HEAD
->>>>>>> saturday
-=======
->>>>>>> 9b887fdb822bdbfaeee2b5568e1b44d4dc2ae601
+dropDownTwo.addEventListener("change", (eve) => {
+	const path = document.getElementById("workout-form");
+	const exId = document.getElementById(dropDownTwo.value);
+	console.log("exID: ", exId);
+	const result = exId.getAttribute("numbah");
+	console.log("numbah: ", result);
+	path.setAttribute("action", `/workouts/exid/${result}`);
+});
 
 // console.log(JSON.stringify(inputs))
 
