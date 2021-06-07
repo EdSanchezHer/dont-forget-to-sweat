@@ -24,7 +24,7 @@ router.get('/:id', csrfProtection, asyncHandler(async (req, res) => {
         throw error // put in validation error
     }
 
-    res.json({ userWorkout });
+    res.status(201).json({ userWorkout });
 
 }));
 
@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 
 
 
-router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
     // console.log(req.body);
     const exerciseId = parseInt(req.params.id)
     console.log('exerciseId: ', exerciseId)
@@ -59,7 +59,7 @@ router.post('/exid/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (
 
     await workout.save()
     res.json({ workout })
-
+    // res.redirect("/gym", { workout ,})
 }))
 
 
