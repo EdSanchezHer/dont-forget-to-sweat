@@ -39,7 +39,7 @@ block content
           option(value="Back") Back 
           option(value="Core") Core 
           option(value="Cardio") Cardio
-        form(action="/workouts" method="post" id="workout-form" class="hidden")
+        form(action="/workouts/getexercise" method="post" id="workout-form" class="hidden")
           input(type="hidden" name="_csrf" value=csrfToken)
           label(for="chosen-exercise") Choose a exercise:
           select(onchange="unhide()" name="chosen-exercise" id="chosen-exercise" value=exercise)

@@ -44,9 +44,9 @@ app.use(
 
 // create Session table if it doesn't already exist
 store.sync();
-// app.use('/demo', demoRouter);
-// store.sync()
 
+// store.sync()
+app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 app.use('/workouts', workoutRouter)
@@ -54,7 +54,7 @@ app.use('/routines', routineRouter);
 app.use('/gym', gymRouter);
 app.use('/exercises', exerciseRouter);
 app.use('/quotes', quoteRouter);
-app.use(restoreUser);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
