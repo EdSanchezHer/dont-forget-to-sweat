@@ -131,12 +131,14 @@ function displayWorkouts() {
 
 	const all = array.map((el) => {
 		let parsed = JSON.parse(el);
-		return `<p class=form-border>Exercise: ${parsed.exercise}<button class=delete-btn onclick=removeWorkout(${parsed.id})>Delete</button></p>
-            <p>Weight: ${parsed.weight}</p>
-            <p>Reps: ${parsed.repetitions}</p>
-            <p>Sets: ${parsed.sets}</p>
-            <p>Resistance: ${parsed.resistance}</p>
-            <p>Distance :${parsed.distance}</p>`;
+		return `<div class="gym-form-border shadow"
+              <p>Exercise: ${parsed.exercise}<button class=delete-btn onclick=removeWorkout(${parsed.id})>Delete</button></p>
+              <p>Weight: ${parsed.weight}</p>
+              <p>Reps: ${parsed.repetitions}</p>
+              <p>Sets: ${parsed.sets}</p>
+              <p>Resistance: ${parsed.resistance}</p>
+              <p>Distance :${parsed.distance}</p>
+            </div>`;
 	});
 	workoutList.innerHTML = all.join("");
 }

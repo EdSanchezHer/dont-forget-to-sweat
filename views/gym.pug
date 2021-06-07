@@ -10,6 +10,8 @@ block content
     div.app_navbar.shadow
       a(href="/gym") 
         img.logo-nav(src="/images/sweat-logo.png")
+      a(href="/") 
+          button.logout-button(type) Log Out
     div.sidebar
       div#days 
         p.form-title-gym Routines
@@ -49,5 +51,5 @@ block content
           +makeInputs("resistance", "Resistance", resistance, 'machine calisthenics cardio')     
           +makeInputs("distance", "Distance", distance, 'cardio')
           button.form-button(type="submit") Add Workout     
-    div.workoutList Test
+    div.workoutList
       div#list

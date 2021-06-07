@@ -111,3 +111,16 @@
 	border-radius: 4px;
 	cursor: pointer;
 }
+
+.logout-button {
+	width: 200px;
+	float: right;
+	font-family: Poppins, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: rgb(221, 139, 139);
+	color: white;
+	padding: 5px;
+	margin: 8px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
